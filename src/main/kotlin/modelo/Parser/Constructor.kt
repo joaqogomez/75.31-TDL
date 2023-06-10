@@ -4,7 +4,7 @@ import modelo.Carta
 import modelo.Continente
 import modelo.Jugador
 import modelo.Objetivo.Objetivo
-import modelo.Pais
+import modelo.Batalla.Pais
 import java.util.*
 
 class Constructor {

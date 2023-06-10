@@ -1,4 +1,4 @@
-package modelo
+package modelo.Batalla
 
 import modelo.Parser.Coordenadas
 import java.util.*

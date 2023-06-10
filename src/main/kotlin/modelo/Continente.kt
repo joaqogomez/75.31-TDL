@@ -1,5 +1,6 @@
 package modelo
 
+import modelo.Batalla.Pais
 import java.util.*
 
 class Continente {

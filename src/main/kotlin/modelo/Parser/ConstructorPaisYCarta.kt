@@ -1,7 +1,7 @@
 package modelo.Parser
 
 import modelo.Carta
-import modelo.Pais
+import modelo.Batalla.Pais
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.collections.Collection
