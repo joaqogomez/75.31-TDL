@@ -4,8 +4,11 @@ import modelo.Parser.Parser
 fun main(args: Array<String>) {
 
     val parser = Parser()
-    val constructor = Constructor()
+    parser.parsearArchivo("src/main/resources/Cartas.json")
+    parser.parsearArchivo("src/main/resources/Paises.json")
+    parser.parsearArchivo("src/main/resources/Objetivos.json")
+    parser.construirObjetos()
+    print(parser.getPaises().size)
 
-    val paises = constructor.construirPaises(parser.getPaises())
-    println(paises["Argentina"]?.paisesLimitrofes)
+
 }

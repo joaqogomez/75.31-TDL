@@ -1,6 +1,5 @@
 package modelo.Parser
 
-import com.sun.tools.javac.util.Pair
 import modelo.Carta
 import modelo.Continente
 import modelo.Jugador
@@ -27,7 +26,7 @@ class Constructor {
     fun construirPaisesYCartas(
         cartaPais: HashMap<String, String>,
         fronteras: HashMap<String, String>,
-        cordenadas: HashMap<String, Pair<Int, Int>>
+        cordenadas: HashMap<String, Coordenadas>
     ) {
         paisYCarta.construirPaisesYCartas(cartaPais, fronteras, cordenadas)
     }
@@ -37,7 +36,7 @@ class Constructor {
     }
 
     fun contruirObjetivos(objetivos: HashMap<String, ArrayList<String>>) {
-        if (this.objetivos != null) this.objetivos.construirObjetivos(objetivos, continente.getContinentes())
+        if (::objetivos.isInitialized) this.objetivos.construirObjetivos(objetivos, continente.getContinentes())
     }
 
     fun getPaises(): HashMap<String, Pais> {

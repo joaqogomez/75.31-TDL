@@ -1,6 +1,6 @@
 package modelo
 
-import com.sun.tools.javac.util.Pair
+import modelo.Parser.Coordenadas
 import java.util.*
 
 class Pais(
@@ -13,9 +13,9 @@ class Pais(
         paisesConectados.add(pais)
     }
 
-    fun setCoordenadas(parDeCoordenadas: Pair<Int, Int>) {
-        posX = parDeCoordenadas.fst
-        posY = parDeCoordenadas.snd
+    fun setCoordenadas(coordenadas: Coordenadas) {
+        this.posX = coordenadas.posX
+        this.posY = coordenadas.posY
     }
 
     fun getNombreDelPais(): String {

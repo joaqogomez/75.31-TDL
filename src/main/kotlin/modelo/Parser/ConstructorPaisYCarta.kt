@@ -1,6 +1,5 @@
 package modelo.Parser
 
-import com.sun.tools.javac.util.Pair
 import modelo.Carta
 import modelo.Pais
 import java.util.*
@@ -15,7 +14,7 @@ class ConstructorPaisYCarta {
 
     fun construirPaisesYCartas(
         cartaPaisHash: HashMap<String, String>, fronteras: HashMap<String, String>,
-        coordenadas: HashMap<String, Pair<Int, Int>>
+        coordenadas: HashMap<String, Coordenadas>
     ) {
 
         for(key in cartaPaisHash.keys){

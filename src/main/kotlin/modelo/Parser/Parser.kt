@@ -20,10 +20,10 @@ class Parser {
     }
 
     fun parsearArchivo(path: String) {
-        if (parser == null) {
+        if (!::parser.isInitialized) {
             if (path.contains("json")) parser = ParserJson()
         }
-        if (parser != null) {
+        if (::parser.isInitialized){
             parser!!.parsearArchivo(path)
         }
     }
