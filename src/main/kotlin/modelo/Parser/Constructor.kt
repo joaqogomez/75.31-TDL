@@ -2,7 +2,7 @@ package modelo.Parser
 
 import modelo.Carta
 import modelo.Continente
-import modelo.Jugador
+import modelo.JuegoYJugador.Jugador
 import modelo.Objetivo.Objetivo
 import modelo.Batalla.Pais
 import java.util.*

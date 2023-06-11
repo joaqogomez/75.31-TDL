@@ -1,6 +1,6 @@
 package modelo.Objetivo
 
-import modelo.Jugador
+import modelo.JuegoYJugador.Jugador
 
 class ObjetivoDerrotar(jugador: Jugador) : Objetivo {
 

@@ -1,10 +1,10 @@
 package modelo.Batalla
 
 import modelo.Excepciones.MovimientoDeEjercitoError
-import modelo.Jugador
+import modelo.JuegoYJugador.Jugador
 
 
-class Ejercitos {
+open class Ejercitos {
     private var comandante: Jugador
     protected var condicionActual: EstadoEjercitos
 
@@ -19,7 +19,7 @@ class Ejercitos {
     }
 
     fun getCantidadEjercitos(): Int {
-        return condicionActual.cantidadFuerzas
+        return condicionActual.getCantidadFuerzas()
     }
     fun agregarEjercitos(cantidad: Int) {
         condicionActual.agregarFuerzas(cantidad)
@@ -37,7 +37,7 @@ class Ejercitos {
         return comandante == ejercitos.comandante
     }
 
-    fun disputarDominioDe(pais: Pais, otrosEjercitos: Ejercitos): Ejercitos {
+    open fun disputarDominioDe(pais: Pais, otrosEjercitos: Ejercitos): Ejercitos {
         if (fueDerrotado()) {
             comandante.perdisteA(pais)
             otrosEjercitos.comandante.ocupasteA(pais)
@@ -51,7 +51,7 @@ class Ejercitos {
         return Ejercitos(numeroFuerzas, comandante)
     }
 
-    fun avisarOcupacionExitosa(unPais: Pais?) {
+    fun avisarOcupacionExitosa(unPais: Pais) {
         comandante.ocupasteA(unPais)
     }
 
@@ -60,7 +60,7 @@ class Ejercitos {
     }
 
     override fun equals(otroObjeto: Any?): Boolean {
-        if (this === otroObjeto) return true else if (otroObjeto == null || otroObjeto.javaClass != Ejercitos::class.java) return false
+        if (this === otroObjeto) return true else if (otroObjeto == null || otroObjeto::class != Ejercitos::class) return false
         val otroEjercito = otroObjeto as Ejercitos
         return otroEjercito.comandante == comandante && otroEjercito.condicionActual.equals(condicionActual)
     }
@@ -73,7 +73,4 @@ class Ejercitos {
         otroEjercito.agregarEjercitos(cantidad)
     }
 
-    fun getColor(): String? {
-        return comandante.getColor()
-    }
 }

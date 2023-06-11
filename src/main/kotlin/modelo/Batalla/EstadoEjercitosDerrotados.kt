@@ -8,8 +8,9 @@ class EstadoEjercitosDerrotados : EstadoEjercitos {
         return this
     }
 
-    override val cantidadFuerzas: Int
-        get() = 0
+    override fun getCantidadFuerzas(): Int {
+        return 0
+    }
 
     override fun agregarFuerzas(numeroDeFuerzas: Int): EstadoEjercitos {
         throw EjercitosDerrotadosError()
@@ -24,6 +25,6 @@ class EstadoEjercitosDerrotados : EstadoEjercitos {
     }
 
     override fun equals(otro: Any?): Boolean {
-        return otro!!.javaClass == EstadoEjercitosDerrotados::class.java
+        return otro!!::class == EstadoEjercitosDerrotados::class
     }
 }

@@ -2,10 +2,14 @@ package modelo.Batalla
 
 import modelo.Excepciones.NoHayFuerzasRestantesError
 
-class EstadoEjercitosEnPie(override var cantidadFuerzas: Int) : EstadoEjercitos {
+class EstadoEjercitosEnPie(private var cantidadFuerzas: Int) : EstadoEjercitos {
 
     override fun evaluarFuerzasRestantes(): EstadoEjercitos {
         return if (cantidadFuerzas <= 0) EstadoEjercitosDerrotados() else this
+    }
+
+    override fun getCantidadFuerzas(): Int {
+        return cantidadFuerzas
     }
 
     override fun agregarFuerzas(numeroDeFuerzas: Int): EstadoEjercitos {
@@ -26,7 +30,7 @@ class EstadoEjercitosEnPie(override var cantidadFuerzas: Int) : EstadoEjercitos 
     }
 
     override fun equals(otro: Any?): Boolean {
-        if (otro === this) return true else if (otro == null || otro.javaClass != EstadoEjercitosEnPie::class.java) return false
+        if (otro === this) return true else if (otro == null || otro::class != EstadoEjercitosEnPie::class) return false
         val otroEnPie = otro as EstadoEjercitosEnPie
         return otroEnPie.cantidadFuerzas == cantidadFuerzas
     }

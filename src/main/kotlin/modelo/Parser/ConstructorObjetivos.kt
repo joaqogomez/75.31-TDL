@@ -1,7 +1,7 @@
 package modelo.Parser
 
 import modelo.Continente
-import modelo.Jugador
+import modelo.JuegoYJugador.Jugador
 import modelo.Objetivo.*
 import java.util.*
 import java.util.regex.Pattern
