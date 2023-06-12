@@ -4,7 +4,7 @@ import modelo.Batalla.Pais
 import modelo.Excepciones.CanjesError
 import java.util.*
 
-class Carta(val pais: Pais, val simbolo: String) {
+class Carta(private val pais: Pais, val simbolo: String) {
     private var mazo: Mazo = Mazo(ArrayList<Carta>())
     private var estadoCarta: EstadoDeActivacion = Desactivada()
 
@@ -58,5 +58,9 @@ class Carta(val pais: Pais, val simbolo: String) {
         if (this === otro) return true else if (otro == null || otro::class != Carta::class) return false
         val otraCarta = otro as Carta
         return pais.equals(otraCarta.pais) && simbolo == otraCarta.simbolo
+    }
+
+    fun getPais(): Pais {
+        return pais
     }
 }

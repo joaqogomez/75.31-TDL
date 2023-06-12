@@ -3,9 +3,10 @@ package modelo.Cartas
 import modelo.Excepciones.CanjesError
 import modelo.JuegoYJugador.InventarioDeJuego
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ManoDeCartas {
-    val cartas: ArrayList<Carta> = ArrayList<Carta>()
+    private val cartas: ArrayList<Carta> = ArrayList<Carta>()
     private var cantidadDeCanjesHechos: Canjes = CanjesMenosDeTres()
     private var puedePedirCarta: Habilitado = NoEstaHabilitado()
     fun recibirCarta(unaCarta: Carta) {
@@ -63,6 +64,10 @@ class ManoDeCartas {
 
     fun ocupePais() {
         puedePedirCarta = puedePedirCarta.ocupePais()
+    }
+
+    fun getCartas(): ArrayList<Carta> {
+        return this.cartas
     }
 
 }

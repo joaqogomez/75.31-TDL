@@ -1,6 +1,7 @@
 package modelo.Objetivo
 
 import modelo.Batalla.Pais
+import modelo.JuegoYJugador.Jugador
 import java.util.*
 
 class ObjetivoConquistar(var primario: Continente,var secundario: Continente,var cantidadAConquistarSecundario : Int) : Objetivo {
@@ -17,4 +18,6 @@ class ObjetivoConquistar(var primario: Continente,var secundario: Continente,var
         val cantidadPaisesSecundarios = contadorDePaisesSecundarios(paises)
         return primario.fueConquistado(paises) && cantidadPaisesSecundarios >= this.cantidadAConquistarSecundario
     }
+
+    override fun setJugadorAuxiliar(actual: Jugador, auxiliar: Jugador) {}
 }

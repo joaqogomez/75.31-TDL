@@ -5,13 +5,13 @@ import java.util.*
 
 class Continente {
     var nombre: String
-    private var paises: ArrayList<Pais>
+    private var paises: ArrayList<Pais> = ArrayList()
     private var cantidadDeFichasPorContinente = 0
 
 
     constructor(nombreContinente: String) {
         nombre = nombreContinente
-        paises = ArrayList()
+        paises
     }
 
     constructor(nombreContinente: String, fichasADevolver: Int) {
@@ -34,5 +34,9 @@ class Continente {
 
     fun pertenece(pais: Pais): Boolean {
         return paises.contains(pais)
+    }
+
+    fun getCantidadDeFichasPorContinente(): Int {
+        return cantidadDeFichasPorContinente
     }
 }
