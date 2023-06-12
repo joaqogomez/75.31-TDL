@@ -1,6 +1,6 @@
 package modelo.Parser
 
-import modelo.Continente
+import modelo.Objetivo.Continente
 import modelo.Batalla.Pais
 import java.util.*
 import java.util.regex.Pattern

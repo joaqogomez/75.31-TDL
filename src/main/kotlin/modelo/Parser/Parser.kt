@@ -1,7 +1,7 @@
 package modelo.Parser
 
-import modelo.Carta
-import modelo.Continente
+import modelo.Cartas.Carta
+import modelo.Objetivo.Continente
 import modelo.JuegoYJugador.Jugador
 import modelo.Objetivo.Objetivo
 import modelo.Batalla.Pais

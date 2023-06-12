@@ -1,6 +1,6 @@
 package modelo.Parser
 
-import modelo.Carta
+import modelo.Cartas.Carta
 import modelo.Batalla.Pais
 import java.util.*
 import java.util.regex.Pattern

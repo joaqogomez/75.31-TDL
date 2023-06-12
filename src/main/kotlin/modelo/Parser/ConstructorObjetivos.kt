@@ -1,6 +1,6 @@
 package modelo.Parser
 
-import modelo.Continente
+import modelo.Objetivo.Continente
 import modelo.JuegoYJugador.Jugador
 import modelo.Objetivo.*
 import java.util.*
