@@ -12,22 +12,25 @@ import java.util.*
 
 class Juego(cantidadDeJugadores: Int) {
     private var turnoActual = 1
-    private val turnoJugadores: HashMap<Int, Jugador> = HashMap<Int, Jugador>()
+    private var turnoJugadores: HashMap<Int, Jugador> = HashMap<Int, Jugador>()
     private lateinit var faseActual: FaseDeRonda
     private lateinit var faseAnterior: FaseDeRonda
-    private val parser: Parser = Parser(turnoJugadores)
+    private var parser: Parser = Parser(turnoJugadores)
     private lateinit var inventario: InventarioDeJuego
+    init {
+        crearJugadores(cantidadDeJugadores)
+    }
 
     fun iniciarJuego() {
         parser.parsearArchivo("src/main/resources/Cartas.json")
         parser.parsearArchivo("src/main/resources/Paises.json")
         parser.parsearArchivo("src/main/resources/Objetivos.json")
         parser.construirObjetos()
-        generarInventario()
-        repartirPaises()
-        repartirObjetivos()
-        faseActual = FasePrimeraColocacion(turnoJugadores[turnoActual]!!)
-        faseAnterior = faseActual
+        this.generarInventario()
+        this.repartirPaises()
+        this.repartirObjetivos()
+        this.faseActual = FasePrimeraColocacion(turnoJugadores[turnoActual]!!)
+        this.faseAnterior = faseActual
     }
 
     private fun repartirObjetivos() {

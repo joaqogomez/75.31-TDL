@@ -1,3 +1,3 @@
 package modelo.Excepciones
 
-class AtaqueNoPermitidoError(var textoError : String) : RuntimeException()
+class AtaqueNoPermitidoError(mensaje: String?) : RuntimeException(mensaje)

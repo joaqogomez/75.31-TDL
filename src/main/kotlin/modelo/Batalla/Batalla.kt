@@ -24,7 +24,7 @@ class Batalla {
     }
 
     private fun compararResultado(resultadoDadoAtacante: ArrayList<Int>, resultadoDadoDefensor: ArrayList<Int>) {
-        val cantidadDeDados = Math.min(resultadoDadoAtacante.size, resultadoDadoDefensor.size)
+        val cantidadDeDados = Math.min(resultadoDadoAtacante.size, resultadoDadoDefensor.size) - 1
         for (i in 0 .. cantidadDeDados) {
             if (resultadoDadoAtacante[i] <= resultadoDadoDefensor[i]) {
                 perdidaAtacante++
