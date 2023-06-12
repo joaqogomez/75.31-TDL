@@ -3,7 +3,18 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.10"
     kotlin("plugin.serialization") version "1.8.21"
+    id("application")
+    id("org.openjfx.javafxplugin") version "0.0.9"
     application
+}
+
+
+javafx {
+    version = "15.0.1"
+    val list = mutableListOf("javafx.controls")
+    val media = listOf("javafx.media")
+    list.addAll(media)
+    modules = media
 }
 
 group = "org.example"
