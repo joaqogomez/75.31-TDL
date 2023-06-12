@@ -50,7 +50,9 @@ class ConstructorObjetivos(jugadores: HashMap<Int, Jugador>) {
     private fun crearObjetivosDestruccion(objetivosDelTipo: ArrayList<String>): ArrayList<Objetivo> {
         val listaObjetivosDestruccion: ArrayList<Objetivo> = ArrayList<Objetivo>()
         for (objetivo in objetivosDelTipo) {
-            listaObjetivosDestruccion.add(ObjetivoDerrotar(jugadores[objetivo.toInt()]!!))
+            if (objetivo.toInt() <= jugadores.size) {
+                listaObjetivosDestruccion.add(ObjetivoDerrotar(jugadores[objetivo.toInt()]!!))
+            }
         }
         return listaObjetivosDestruccion
     }
