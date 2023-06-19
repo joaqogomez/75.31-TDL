@@ -1,9 +1,8 @@
 package modelo.Parser
 
-import com.sun.tools.javac.util.Pair
-import jdk.nashorn.internal.parser.JSONParser
-import org.json.JSONArray
-import org.json.JSONObject
+import org.json.simple.parser.JSONParser
+import org.json.simple.JSONArray
+import org.json.simple.JSONObject
 import java.io.FileReader
 import java.io.IOException
 import java.text.ParseException
@@ -14,7 +13,7 @@ class ParserJson : ParserTipo {
     private var paises: HashMap<String, String> = HashMap()
     private var continentes: HashMap<String, String> = HashMap()
     private var fronteras: HashMap<String, String> = HashMap()
-    private var coordenadas: HashMap<String, Pair<Int, Int>> = HashMap()
+    private var coordenadas: HashMap<String, Coordenadas> = HashMap()
     private var objetivos: HashMap<String, ArrayList<String>> = HashMap()
 
     override fun parsearArchivo(path: String) {
@@ -23,9 +22,9 @@ class ParserJson : ParserTipo {
             FileReader(path).use { reader ->
                 val obj: Any = jsonParser.parse(reader)
                 val tegList: JSONArray = obj as JSONArray
-                if (path == "Cartas.json") tegList.forEach { carta -> parseCartasObject(carta as JSONObject) }
-                if (path == "Fronteras.json") tegList.forEach { frontera -> parseFronterasObject(frontera as JSONObject) }
-                if (path == "Objetivos.json") tegList.forEach { objetivo -> parseObjetivosObject(objetivo as JSONObject) }
+                if (path.contains("Cartas.json")) tegList.forEach { carta -> parseCartasObject(carta as JSONObject) }
+                if (path.contains("Paises.json")) tegList.forEach { frontera -> parseFronterasObject(frontera as JSONObject) }
+                if (path.contains("Objetivos.json")) tegList.forEach { objetivo -> parseObjetivosObject(objetivo as JSONObject) }
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -58,7 +57,7 @@ class ParserJson : ParserTipo {
     }
 
     private fun parseCartasObject(cartas: JSONObject) {
-        val cartasObject: JSONObject = cartas as JSONObject
+        val cartasObject: JSONObject = cartas
         val nombrePais = cartasObject.get("Pais") as String
         val simbolo = cartasObject.get("Simbolo") as String
         paises.put(nombrePais, simbolo)
@@ -67,12 +66,12 @@ class ParserJson : ParserTipo {
     private fun parseFronterasObject(fronteras: JSONObject) {
         val fronterasObject: JSONObject = fronteras as JSONObject
         val nombrePais = fronterasObject.get("Pais") as String
-        val cordX: Int = fronterasObject.get("PosX") as String?.toInt()
-        val cordY: Int = fronterasObject.get("PosY") as String?.toInt()
+        val cordX: Int = (fronterasObject.get("PosX") as String).toInt()
+        val cordY: Int = (fronterasObject.get("PosY") as String).toInt()
         val nombreContinente = fronterasObject.get("Continente") as String
-        val paisesLimitrofes = fronterasObject.get("Limita con") as String
+        val paisesLimitrofes = fronterasObject.get("LimitaCon") as String
         this.fronteras.put(nombrePais, paisesLimitrofes)
-        coordenadas.put(nombrePais, Pair(cordX, cordY))
+        coordenadas.put(nombrePais, Coordenadas(cordX, cordY))
         if (!continentes.containsKey(nombreContinente)) {
             continentes.put(nombreContinente, nombrePais)
         } else {
@@ -98,7 +97,7 @@ class ParserJson : ParserTipo {
         return objetivos
     }
 
-    override fun getCoordenadas(): HashMap<String, Pair<Int, Int>> {
+    override fun getCoordenadas(): HashMap<String, Coordenadas> {
         return coordenadas
     }
 
@@ -106,6 +105,6 @@ class ParserJson : ParserTipo {
         continentes = HashMap()
         fronteras = HashMap()
         objetivos = HashMap()
-        coordenadas = HashMap<String, Pair<Int, Int>>()
+        coordenadas = HashMap<String, Coordenadas>()
     }
 }

@@ -1,7 +1,7 @@
 package modelo.Parser
 
-import modelo.Continente
-import modelo.Jugador
+import modelo.Objetivo.Continente
+import modelo.JuegoYJugador.Jugador
 import modelo.Objetivo.*
 import java.util.*
 import java.util.regex.Pattern
@@ -50,7 +50,9 @@ class ConstructorObjetivos(jugadores: HashMap<Int, Jugador>) {
     private fun crearObjetivosDestruccion(objetivosDelTipo: ArrayList<String>): ArrayList<Objetivo> {
         val listaObjetivosDestruccion: ArrayList<Objetivo> = ArrayList<Objetivo>()
         for (objetivo in objetivosDelTipo) {
-            listaObjetivosDestruccion.add(ObjetivoDerrotar(jugadores[objetivo.toInt()]!!))
+            if (objetivo.toInt() <= jugadores.size) {
+                listaObjetivosDestruccion.add(ObjetivoDerrotar(jugadores[objetivo.toInt()]!!))
+            }
         }
         return listaObjetivosDestruccion
     }

@@ -1,10 +1,10 @@
 package modelo.Parser
 
-import modelo.Carta
-import modelo.Continente
-import modelo.Jugador
+import modelo.Cartas.Carta
+import modelo.Objetivo.Continente
+import modelo.JuegoYJugador.Jugador
 import modelo.Objetivo.Objetivo
-import modelo.Pais
+import modelo.Batalla.Pais
 import java.util.*
 
 class Parser {
@@ -20,10 +20,10 @@ class Parser {
     }
 
     fun parsearArchivo(path: String) {
-        if (parser == null) {
+        if (!::parser.isInitialized) {
             if (path.contains("json")) parser = ParserJson()
         }
-        if (parser != null) {
+        if (::parser.isInitialized){
             parser!!.parsearArchivo(path)
         }
     }

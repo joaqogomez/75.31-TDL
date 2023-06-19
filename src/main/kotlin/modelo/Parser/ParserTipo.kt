@@ -1,6 +1,4 @@
 package modelo.Parser
-
-import com.sun.tools.javac.util.Pair
 import java.util.*
 
 interface ParserTipo {
@@ -10,5 +8,5 @@ interface ParserTipo {
     fun getFronteras(): HashMap<String, String>
     fun getPaisesConSimbolos(): HashMap<String, String>
     fun getObjetivos(): HashMap<String, ArrayList<String>>
-    fun getCoordenadas(): HashMap<String, Pair<Int, Int>>
+    fun getCoordenadas(): HashMap<String, Coordenadas>
 }
