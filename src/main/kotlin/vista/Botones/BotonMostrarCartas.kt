@@ -1,7 +1,7 @@
 package vista.Botones
 
 import edu.fiuba.algo3.Controlador.handlers.MostrarCartasHandler
-import edu.fiuba.algo3.modelo.JuegoYJugador.InventarioDeJugador
+import modelo.JuegoYJugador.InventarioDeJugador
 import javafx.event.ActionEvent
 import javafx.scene.control.Button
 
