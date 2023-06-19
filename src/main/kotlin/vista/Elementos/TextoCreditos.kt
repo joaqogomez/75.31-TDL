@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.Elementos
+package vista.Elementos
 
 import javafx.scene.paint.Color
 import javafx.scene.text.*

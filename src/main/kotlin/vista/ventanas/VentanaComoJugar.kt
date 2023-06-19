@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
-import edu.fiuba.algo3.vista.Elementos.TextoComoJugar
+import vista.Elementos.TextoComoJugar
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.image.ImageView

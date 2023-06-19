@@ -1,20 +1,20 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
-import edu.fiuba.algo3.vista.Botones.BotonSalir
+import vista.Botones.BotonSalir
 import javafx.scene.Group
 import javafx.scene.control.Button
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.text.Text
 
-class VentanaDePapel(var texto: Text?) : Group() {
+class VentanaDePapel(var texto: Text) : Group() {
     init {
         prepararBotonSalir()
     }
 
-    private fun prepararTexto(textoAMostrar: Text?) {
-        textoAMostrar.setTranslateX(60.0)
-        textoAMostrar.setTranslateY(100.0)
+    private fun prepararTexto(textoAMostrar: Text) {
+        textoAMostrar.translateX = 60.0
+        textoAMostrar.translateY = 100.0
         children.add(textoAMostrar)
     }
 

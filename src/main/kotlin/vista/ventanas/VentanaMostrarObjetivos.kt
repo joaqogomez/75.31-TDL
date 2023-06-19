@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
 import javafx.scene.Group
 
-class VentanaMostrarObjetivos(menuObjetivos: VentanaMenu?) : Group() {
+class VentanaMostrarObjetivos(menuObjetivos: VentanaMenu) : Group() {
     init {
         agregarMenu()
         children.add(menuObjetivos)

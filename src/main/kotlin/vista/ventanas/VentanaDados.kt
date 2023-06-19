@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
 import javafx.geometry.Insets
 import javafx.geometry.Pos
@@ -7,8 +7,9 @@ import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import javafx.scene.text.*
+import java.util.*
 
-class VentanaDados(resultadoDadoAtacante: ArrayList<Int?>?, resultadoDadoDefensor: ArrayList<Int?>?) : StackPane() {
+class VentanaDados(resultadoDadoAtacante: ArrayList<Int>, resultadoDadoDefensor: ArrayList<Int>) : StackPane() {
     init {
         val imagen = ImageView("file:papel.jpg")
         imagen.fitHeight = 600.0
@@ -38,11 +39,11 @@ class VentanaDados(resultadoDadoAtacante: ArrayList<Int?>?, resultadoDadoDefenso
         super.getChildren().add(contenedor)
     }
 
-    private fun estilizarDados(unosDados: ArrayList<Int?>?): Text? {
+    private fun estilizarDados(unosDados: ArrayList<Int>): Text {
         val dadosChetos = Text()
         var stringDeDados = ""
         for (dado in unosDados) {
-            stringDeDados += dado.toString() + "   "
+            stringDeDados += "$dado   "
         }
         dadosChetos.text = stringDeDados
         dadosChetos.font = Font.font("arial", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 18.0)

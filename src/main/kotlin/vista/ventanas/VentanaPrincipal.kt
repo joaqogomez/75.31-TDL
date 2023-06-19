@@ -1,6 +1,6 @@
 package vista.ventanas
 
-import edu.fiuba.algo3.vista.Elementos.BarraMenu
+import vista.Elementos.BarraMenu
 import javafx.scene.Group
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 
 class VentanaPrincipal : Group() {
-    var menu: BarraMenu? = BarraMenu()
+    var menu: BarraMenu = BarraMenu()
 
     init {
         setFondo()

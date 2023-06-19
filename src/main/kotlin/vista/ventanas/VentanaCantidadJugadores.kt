@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
-import edu.fiuba.algo3.vista.Botones.BotonDeSeleccion
-import edu.fiuba.algo3.vista.Elementos.BarraMenu
+import vista.Botones.BotonDeSeleccion
+import vista.Elementos.BarraMenu
 import javafx.scene.Node
 import javafx.scene.control.Label
 import javafx.scene.image.Image
@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.StackPane
+import java.util.*
 
 class VentanaCantidadJugadores : StackPane() {
     init {
@@ -38,7 +39,7 @@ class VentanaCantidadJugadores : StackPane() {
         info.style = "-fx-font-weight: bold"
         info.translateX = 905.0
         info.translateY = 280.0
-        val nodos = ArrayList<Node?>()
+        val nodos = ArrayList<Node>()
         nodos.add(info)
         for (i in 2..6) {
             nodos.add(BotonDeSeleccion(i))

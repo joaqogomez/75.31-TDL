@@ -1,7 +1,7 @@
 package vista.ventanas
 
 import vista.Botones.BotonCancel
-import Botones.BotonComenzar
+import vista.Botones.BotonComenzar
 import vista.Elementos.CampoDeNombre
 import javafx.scene.Group
 import javafx.scene.control.Button
