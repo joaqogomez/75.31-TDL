@@ -1,5 +1,6 @@
 import modelo.Parser.Constructor
 import modelo.Parser.Parser
+import vista.Tablero
 
 fun main(args: Array<String>) {
 
@@ -9,7 +10,7 @@ fun main(args: Array<String>) {
     parser.parsearArchivo("src/main/resources/Objetivos.json")
     parser.construirObjetos()
     print(parser.getPaises().size)
-
+    Tablero.Companion.main(args)
 
 
 }

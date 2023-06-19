@@ -8,14 +8,14 @@ import javafx.stage.Stage
 
 class Tablero : Application() {
     @Throws(Exception::class)
-    override fun start(stage: Stage?) {
-        stage.setTitle("A.L.T.E.G.O.")
-        ControladorMusica()
+    override fun start(stage: Stage) {
+        stage.title = "A.L.T.E.G.O."
+        val controladorMusica = ControladorMusica.getInstance()
         val ventanaComienzo = VentanaComienzo()
         val escenaComienzo = Scene(ventanaComienzo)
-        stage.setScene(escenaComienzo)
+        stage.scene = escenaComienzo
         stage.show()
-        ControladorMusica.Companion.playBackgroundMusic()
+        controladorMusica.playBackgroundMusic()
     }
 
     companion object {

@@ -5,6 +5,7 @@ import javafx.event.EventHandler
 
 class MusicaOnHandler : EventHandler<ActionEvent?> {
     override fun handle(actionEvent: ActionEvent?) {
-        ControladorMusica.Companion.unmuteAll()
+        val c = ControladorMusica.getInstance()
+        c.unmuteAll()
     }
 }
