@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.Elementos
+package vista.Elementos
 
 import javafx.scene.Group
 import javafx.scene.text.Text
@@ -6,7 +6,7 @@ import javafx.scene.text.Text
 class TextoNotificable : Text {
     var agregadoAGrupo: Group? = null
 
-    constructor(fichaEscuchada: Ficha?) {
+    constructor(fichaEscuchada: Ficha) {
         fichaEscuchada.notificame(this)
         text = "Fichas restantes: " + fichaEscuchada.getCantidad().text
         this.setStyle()
@@ -25,16 +25,16 @@ class TextoNotificable : Text {
         style = "-fx-font-weight: bold"
     }
 
-    fun notificar(texto: Text?) {
-        text = "Fichas restantes: " + texto.getText()
+    fun notificar(texto: Text) {
+        text = "Fichas restantes: " + texto.text
     }
 
-    fun agregarAGrupo(grupo: Group?) {
+    fun agregarAGrupo(grupo: Group) {
         agregadoAGrupo = grupo
-        grupo.getChildren().add(this)
+        grupo.children.add(this)
     }
 
-    fun noEstaAgregadoA(grupoDeEscena: Group?): Boolean {
+    fun noEstaAgregadoA(grupoDeEscena: Group): Boolean {
         return !(grupoDeEscena === agregadoAGrupo)
     }
 }

@@ -11,10 +11,11 @@ plugins {
 
 javafx {
     version = "15.0.1"
+
     val list = mutableListOf("javafx.controls")
     val media = listOf("javafx.media")
     list.addAll(media)
-    modules = media
+    modules = list
 }
 
 group = "org.example"

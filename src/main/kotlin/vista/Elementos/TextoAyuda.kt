@@ -35,7 +35,7 @@ class TextoAyuda : Text(
     
     Luego del canje las tarjetas vuelven a estar desactivadas.
     
-    """.trimIndent()
+    """
 ) {
     init {
         super.setFont(Font.font("arial", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 15.0))

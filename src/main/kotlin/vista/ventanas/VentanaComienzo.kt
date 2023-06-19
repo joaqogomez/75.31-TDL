@@ -1,7 +1,6 @@
 package vista.ventanas
 
-import edu.fiuba.algo3.vista.Botones.BotonComienzo
-import edu.fiuba.algo3.vista.ventanas.VentanaPrincipal
+import vista.Botones.BotonComienzo
 import javafx.scene.Group
 import javafx.scene.control.Button
 import javafx.scene.layout.StackPane
@@ -18,7 +17,7 @@ class VentanaComienzo : StackPane() {
         children.add(panel)
     }
 
-    private fun prepararBotonInicio(): Button? {
+    private fun prepararBotonInicio(): Button {
         val botonComienzo: Button = BotonComienzo()
         children.addAll(botonComienzo)
         return botonComienzo

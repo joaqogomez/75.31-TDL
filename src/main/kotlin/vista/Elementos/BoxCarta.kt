@@ -1,14 +1,14 @@
-package edu.fiuba.algo3.vista.Elementos
+package vista.Elementos
 
 import edu.fiuba.algo3.Controlador.handlers.HandlerDeCarta
-import edu.fiuba.algo3.modelo.Cartas.Carta
+import modelo.Cartas.Carta
 import javafx.scene.Group
 import javafx.scene.paint.Paint
 import javafx.scene.shape.Rectangle
 import javafx.scene.shape.StrokeType
 import javafx.scene.text.Text
 
-class BoxCarta(private val carta: Carta?) : Rectangle() {
+class BoxCarta(private val carta: Carta) : Rectangle() {
     private var textoSimbolo: Text? = null
     private var textoPais: Text? = null
     private var colorActual: String? = "#ffebcd"
@@ -26,35 +26,35 @@ class BoxCarta(private val carta: Carta?) : Rectangle() {
         this.strokeType = StrokeType.INSIDE
     }
 
-    private fun formatearTexto(carta: Carta?) {
-        textoSimbolo = Text(carta.getSimbolo())
-        textoSimbolo.setFill(Paint.valueOf("#000000"))
-        textoSimbolo.setStyle("-fx-font-weight: bold")
-        textoPais = Text(carta.getPais().nombreDelPais)
-        textoPais.setFill(Paint.valueOf("#000000"))
-        textoPais.setStyle("-fx-font-weight: bold")
+    private fun formatearTexto(carta: Carta) {
+        textoSimbolo = Text("Simbolo")
+        textoSimbolo!!.fill = Paint.valueOf("#000000")
+        textoSimbolo!!.style = "-fx-font-weight: bold"
+        textoPais = Text(carta.getPais().getNombreDelPais())
+        textoPais!!.fill = Paint.valueOf("#000000")
+        textoPais!!.style = "-fx-font-weight: bold"
         fill = Paint.valueOf("#000000")
     }
 
     fun setPosicion(posX: Int, posY: Int) {
         this.translateX = posX.toDouble()
         this.translateY = posY.toDouble()
-        textoSimbolo.setTranslateX((posX + 15).toDouble())
-        textoSimbolo.setTranslateY((posY + 15).toDouble())
-        textoPais.setTranslateX((posX + 15).toDouble())
-        textoPais.setTranslateY((posY + 35).toDouble())
+        textoSimbolo?.translateX = (posX + 15).toDouble()
+        textoSimbolo?.translateY = (posY + 15).toDouble()
+        textoPais?.translateX = (posX + 15).toDouble()
+        textoPais?.translateY = (posY + 35).toDouble()
     }
 
-    fun agregarseA(parent: Group?) {
-        parent.getChildren().add(this)
-        parent.getChildren().add(textoSimbolo)
-        parent.getChildren().add(textoPais)
+    fun agregarseA(parent: Group) {
+        parent.children.add(this)
+        parent.children.add(textoSimbolo)
+        parent.children.add(textoPais)
     }
 
     fun agregarNuevoHandler(handler: HandlerDeCarta?) {
         this.onMouseClicked = handler
-        textoSimbolo.setOnMouseClicked(handler)
-        textoPais.setOnMouseClicked(handler)
+        textoSimbolo?.onMouseClicked = handler
+        textoPais?.onMouseClicked = handler
     }
 
     fun limpiarHandler() {
@@ -65,10 +65,10 @@ class BoxCarta(private val carta: Carta?) : Rectangle() {
         desactivarse()
     }
 
-    fun copiarEn(unaCarta: BoxCarta?, otraCarta: Carta?) {
-        val handlerDelOtro = unaCarta.getOnMouseClicked() as HandlerDeCarta
-        val miHandlerNuevo = handlerDelOtro.copy
-        miHandlerNuevo.asociarCarta(otraCarta)
+    fun copiarEn(unaCarta: BoxCarta, otraCarta: Carta) {
+        val handlerDelOtro = unaCarta.onMouseClicked as HandlerDeCarta
+        val miHandlerNuevo = handlerDelOtro.getCopy()
+        miHandlerNuevo!!.asociarCarta(otraCarta)
         agregarNuevoHandler(miHandlerNuevo)
     }
 
@@ -84,16 +84,16 @@ class BoxCarta(private val carta: Carta?) : Rectangle() {
     fun activarse() {
         fill = Paint.valueOf("#008000")
         this.isDisable = true
-        textoSimbolo.setDisable(true)
-        textoPais.setDisable(true)
-        textoPais.setDisable(true)
+        textoSimbolo!!.isDisable = true
+        textoPais!!.isDisable = true
+        textoPais!!.isDisable = true
     }
 
     private fun desactivarse() {
         fill = Paint.valueOf(colorActual)
         this.isDisable = false
-        textoSimbolo.setDisable(false)
-        textoPais.setDisable(false)
-        textoPais.setDisable(false)
+        textoSimbolo!!.isDisable = false
+        textoPais!!.isDisable = false
+        textoPais!!.isDisable = false
     }
 }

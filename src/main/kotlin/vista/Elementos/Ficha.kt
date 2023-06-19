@@ -1,34 +1,35 @@
-package edu.fiuba.algo3.vista.Elementos
+package vista.Elementos
 
 import edu.fiuba.algo3.Controlador.handlers.HandlerDePais
-import edu.fiuba.algo3.modelo.Batalla.Pais
+import vista.Elementos.TextoNotificable
+import modelo.Batalla.Pais
 import javafx.scene.Group
 import javafx.scene.paint.Paint
 import javafx.scene.shape.Circle
 import javafx.scene.text.Text
 
 class Ficha(color: String?) : Circle() {
-    private val texto: Text?
+    private val texto: Text
     private var textoNotificable: TextoNotificable? = null
 
     init {
         fill = Paint.valueOf(color)
         texto = Text("10")
-        texto.setFill(Paint.valueOf("#ffffff"))
-        texto.setStyle("-fx-font-weight: bold")
+        texto.fill = Paint.valueOf("#ffffff")
+        texto.style = "-fx-font-weight: bold"
         radius = 12.0
     }
 
     fun setPosicion(posX: Int, posY: Int) {
         this.translateX = posX.toDouble()
         this.translateY = posY.toDouble()
-        texto.setTranslateX((posX - 6).toDouble())
-        texto.setTranslateY((posY + 4).toDouble())
+        texto.translateX = (posX - 6).toDouble()
+        texto.translateY = (posY + 4).toDouble()
     }
 
-    fun agregarseA(parent: Group?) {
-        parent.getChildren().add(this)
-        parent.getChildren().add(texto)
+    fun agregarseA(parent: Group) {
+        parent.children.add(this)
+        parent.children.add(texto)
     }
 
     fun setColor(nuevoColor: String?) {
@@ -37,20 +38,20 @@ class Ficha(color: String?) : Circle() {
 
     fun agregarNuevoHandler(handler: HandlerDePais?) {
         this.onMouseClicked = handler
-        texto.setOnMouseClicked(handler)
+        texto.onMouseClicked = handler
         this.isDisable = false
-        texto.setDisable(false)
+        texto.isDisable = false
     }
 
     fun notificar(color: String?, fichasDisponibles: Int?) {
         fill = Paint.valueOf(color)
-        texto.setText(fichasDisponibles.toString())
+        texto.text = fichasDisponibles.toString()
         if (textoNotificable != null) {
-            textoNotificable.notificar(texto)
+            textoNotificable!!.notificar(texto)
         }
     }
 
-    fun getCantidad(): Text? {
+    fun getCantidad(): Text {
         return texto
     }
 
@@ -65,10 +66,10 @@ class Ficha(color: String?) : Circle() {
         }
     }
 
-    fun copiarEn(unaFicha: Ficha?, pais: Pais?) {
-        val handlerDelOtro = unaFicha.getOnMouseClicked() as HandlerDePais
-        val miHandlerNuevo = handlerDelOtro.copy
-        miHandlerNuevo.asociarPais(pais)
+    fun copiarEn(unaFicha: Ficha, pais: Pais) {
+        val handlerDelOtro = unaFicha.onMouseClicked as HandlerDePais
+        val miHandlerNuevo = handlerDelOtro.getCopy()
+        miHandlerNuevo?.asociarPais(pais)
         agregarNuevoHandler(miHandlerNuevo)
     }
 }

@@ -1,20 +1,20 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.musica.ControladorMusica
-import edu.fiuba.algo3.vista.Botones.BotonComienzo
-import edu.fiuba.algo3.vista.Botones.BotonSalir
+import modelo.JuegoYJugador.Jugador
+import musica.ControladorMusica
+import vista.Botones.BotonComienzo
+import vista.Botones.BotonSalir
 import javafx.scene.Group
 import javafx.scene.control.Button
 import javafx.scene.paint.Paint
 import javafx.scene.text.Text
 
-class VentanaVictoria(jugadorGanador: Jugador?) : Group() {
+class VentanaVictoria(jugadorGanador: Jugador) : Group() {
     init {
         prepararFondoDeVentana()
         prepararVentanaDeVictoria(jugadorGanador)
         prepararBotonDeReinicio()
-        ControladorMusica.Companion.playVictory()
+        ControladorMusica.getInstance().playVictory()
     }
 
     private fun prepararBotonDeReinicio() {
@@ -28,22 +28,22 @@ class VentanaVictoria(jugadorGanador: Jugador?) : Group() {
         children.addAll(botonDeReinicio, botonDeSalir)
     }
 
-    private fun setPosiciones(botonDeReinicio: Button?, botonDeSalir: Button?) {
-        botonDeReinicio.setTranslateX(920.0)
-        botonDeSalir.setTranslateX(955.0)
-        botonDeReinicio.setTranslateY(550.0)
-        botonDeSalir.setTranslateY(580.0)
+    private fun setPosiciones(botonDeReinicio: Button, botonDeSalir: Button) {
+        botonDeReinicio.translateX = 920.0
+        botonDeSalir.translateX = 955.0
+        botonDeReinicio.translateY = 550.0
+        botonDeSalir.translateY = 580.0
     }
 
-    private fun prepararVentanaDeVictoria(ganador: Jugador?) {
+    private fun prepararVentanaDeVictoria(ganador: Jugador) {
         val textoDeVictoria = Text(
             """
     Victoria de: 
-    ${ganador.getNombreJugador()}
-    """.trimIndent()
+    ${ganador.nombreJugador}
+    """
         )
         textoDeVictoria.style = "-fx-font: 24 sans-serif; -fx-font-weight: bold;"
-        textoDeVictoria.fill = Paint.valueOf(ganador.getColor())
+        textoDeVictoria.fill = Paint.valueOf(ganador.color)
         textoDeVictoria.translateX = 900.0
         textoDeVictoria.translateY = 50.0
         children.add(textoDeVictoria)

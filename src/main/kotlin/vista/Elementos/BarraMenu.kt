@@ -1,11 +1,11 @@
-package edu.fiuba.algo3.vista.Elementos
+package vista.Elementos
 
 import edu.fiuba.algo3.Controlador.handlers.AyudaHandler
 import edu.fiuba.algo3.Controlador.handlers.ComoJugarHandler
 import edu.fiuba.algo3.Controlador.handlers.CreditosHandler
 import edu.fiuba.algo3.Controlador.handlers.SalirHandler
-import edu.fiuba.algo3.musica.MusicaOffHandler
-import edu.fiuba.algo3.musica.MusicaOnHandler
+import musica.MusicaOffHandler
+import musica.MusicaOnHandler
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
 import edu.fiuba.algo3.vista.Elementos.BarraMenu
 import javafx.scene.Group

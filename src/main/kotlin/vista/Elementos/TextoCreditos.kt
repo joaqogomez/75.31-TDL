@@ -8,16 +8,14 @@ class TextoCreditos : Text(
     
     Hecho Por:
     
-    Leonel Fernandez
-    Axel Higa
-    Francisco Pereira
-    Julia Valdovinos
-    Lucia Valdovinos
+    Valdez, Santiago
+    Gomez, Joaquin
+    Romero, Adrian
     
-    Para la materia Algoritmos y Programacion 3 catedra Suarez,
+    Para la materia Teoria del Lenguaje,
     de la Facultad de Ingenieria de la Universidad de Buenos Aires.
     
-    """.trimIndent()
+    """
 ) {
     init {
         super.setFont(Font.font("arial", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 15.0))

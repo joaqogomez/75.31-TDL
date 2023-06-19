@@ -1,13 +1,14 @@
-package edu.fiuba.algo3.vista.ventanas
+package vista.ventanas
 
-import edu.fiuba.algo3.vista.Botones.BotonCancel
-import edu.fiuba.algo3.vista.Botones.BotonComenzar
-import edu.fiuba.algo3.vista.Elementos.CampoDeNombre
+import vista.Botones.BotonCancel
+import Botones.BotonComenzar
+import vista.Elementos.CampoDeNombre
 import javafx.scene.Group
 import javafx.scene.control.Button
 import javafx.scene.control.TextField
+import java.util.*
 
-class VentanaNombrarJugadores(numeroDeJugadores: Int?) : Group() {
+class VentanaNombrarJugadores(numeroDeJugadores: Int) : Group() {
     init {
         agregarFondo()
         agregarBotonCancel()
@@ -24,7 +25,7 @@ class VentanaNombrarJugadores(numeroDeJugadores: Int?) : Group() {
         children.addAll(cancel)
     }
 
-    private fun agregarCampos(numeroDeJugadores: Int?) {
+    private fun agregarCampos(numeroDeJugadores: Int) {
         val textos = ArrayList<TextField?>()
         for (i in 1..numeroDeJugadores) {
             textos.add(CampoDeNombre(i))

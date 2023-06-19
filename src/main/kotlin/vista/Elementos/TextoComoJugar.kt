@@ -18,7 +18,7 @@ class TextoComoJugar : Text(
     
     Para mas detalles, ver la pestaña Ayuda.
     
-    """.trimIndent()
+    """
 ) {
     init {
         super.setFont(Font.font("arial", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 15.0))
