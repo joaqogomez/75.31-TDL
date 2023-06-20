@@ -1,12 +1,14 @@
 package Controlador
 
-import edu.fiuba.algo3.Controlador.handlers.HandlerDePais
-import edu.fiuba.algo3.modelo.Batalla.Pais
-import edu.fiuba.algo3.modelo.JuegoYJugador.Juego
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.Ficha
+import Controlador.handlers.HandlerDePais
+import modelo.Batalla.Pais
+import modelo.JuegoYJugador.Juego
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.Ficha
 import javafx.scene.Scene
 import javafx.scene.control.TextField
+import vista.Elementos.CampoDeNombre
+import java.util.*
 
 object Controlador {
     private var teg: Juego? = null
@@ -14,38 +16,50 @@ object Controlador {
         teg = Juego(numeroJugadores)
     }
 
-    fun setearNombres(nombres: ArrayList<TextField?>?) {
+    fun setearNombres(nombres: ArrayList<TextField>) {
         for (nombre in nombres) {
-            teg.setNombreJugador(nombre)
+            val numeroJugador = (nombre as CampoDeNombre?)!!.getNumero()
+            teg!!.setNombreJugadorNumero(numeroJugador, nombre.getText())
         }
     }
 
     private fun setearFichas(fichas: ArrayList<Ficha?>?) {
-        teg.setearFichas(fichas)
+        val inventario = teg!!.inventario
+        val paises = inventario.paises
+        /*
+        for (i in 0 until inventario.cantidadDePaises()) {
+            fichas[i].asociarA(paises[i])
+        }
+
+         */
     }
 
-    fun empezarJuego(fichas: ArrayList<Ficha?>?) {
+    fun empezarJuego(fichas: ArrayList<Ficha>?) {
+        /*
         teg.iniciarJuego()
         setearFichas(fichas)
+         */
     }
 
     fun pedirMenuSiguiente(): Scene? {
-        return teg.prepararMenuSiguiente()
+       // return teg.prepararMenuSiguiente()
+        return null
     }
 
     fun obtenerEscenaObjetivos(): Scene? {
-        return teg.mostrarObjetivos()
+        //return teg.mostrarObjetivos()
+        return null
     }
 
     fun habilitarPaises(pais: Pais?, confirmacionAtaqueHandle: HandlerDePais?) {
-        teg.habilitarPaisesParaAtaque(pais, confirmacionAtaqueHandle)
+        //teg.habilitarPaisesParaAtaque(pais, confirmacionAtaqueHandle)
     }
 
     fun habilitarPaisesParaColocacion(handler: HandlerDePais?) {
-        teg.habilitarPaisesParaColocacion(handler)
+        //teg.habilitarPaisesParaColocacion(handler)
     }
 
     fun reestablecerPaises(jugador: Jugador?, handler: HandlerDePais?) {
-        teg.reestablecerPaises(jugador, handler)
+        //teg.reestablecerPaises(jugador, handler)
     }
 }

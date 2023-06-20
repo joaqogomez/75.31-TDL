@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.modelo.Batalla.Pais
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
+import modelo.Batalla.Pais
+import modelo.JuegoYJugador.Jugador
 import javafx.event.EventHandler
 import javafx.scene.input.MouseEvent
 

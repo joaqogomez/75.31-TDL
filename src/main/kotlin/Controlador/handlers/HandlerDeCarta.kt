@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.modelo.Cartas.Carta
+import modelo.Cartas.Carta
 import javafx.event.EventHandler
 import javafx.scene.input.MouseEvent
 

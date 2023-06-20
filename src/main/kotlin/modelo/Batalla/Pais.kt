@@ -39,11 +39,12 @@ class Pais(nombre: String) {
         ejercitos.agregarEjercitos(cantidadDeEjercitos)
     }
 
-    fun atacarA(otroPais: Pais) {
+    fun atacarA(otroPais: Pais): Batalla {
         verificarPosibilidadDeAtaque(otroPais)
         val batalla = Batalla()
         batalla.atacar(ejercitos, otroPais.ejercitos)
         otroPais.recibirTropas(ejercitos)
+        return batalla
     }
 
     private fun esDelMismoEquipo(otroPais: Pais): Boolean {

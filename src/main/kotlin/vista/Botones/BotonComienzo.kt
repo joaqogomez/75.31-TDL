@@ -1,6 +1,6 @@
 package vista.Botones
 
-import edu.fiuba.algo3.Controlador.handlers.BotonComienzoHandler
+import Controlador.handlers.BotonComienzoHandler
 import javafx.scene.control.Button
 
 class BotonComienzo : Button("Comenzar Juego") {

@@ -1,6 +1,6 @@
 package vista.Elementos
 
-import edu.fiuba.algo3.Controlador.handlers.HandlerDePais
+import Controlador.handlers.HandlerDePais
 import vista.Elementos.TextoNotificable
 import modelo.Batalla.Pais
 import javafx.scene.Group
@@ -8,7 +8,8 @@ import javafx.scene.paint.Paint
 import javafx.scene.shape.Circle
 import javafx.scene.text.Text
 
-class Ficha(color: String?) : Circle() {
+class Ficha(color: String?, pais: Pais) : Circle() {
+    private var miPais: Pais
     private val texto: Text
     private var textoNotificable: TextoNotificable? = null
 
@@ -18,6 +19,7 @@ class Ficha(color: String?) : Circle() {
         texto.fill = Paint.valueOf("#ffffff")
         texto.style = "-fx-font-weight: bold"
         radius = 12.0
+        miPais = pais
     }
 
     fun setPosicion(posX: Int, posY: Int) {
@@ -71,5 +73,9 @@ class Ficha(color: String?) : Circle() {
         val miHandlerNuevo = handlerDelOtro.getCopy()
         miHandlerNuevo?.asociarPais(pais)
         agregarNuevoHandler(miHandlerNuevo)
+    }
+
+    fun asociarA(pais: Pais) {
+        miPais = pais
     }
 }

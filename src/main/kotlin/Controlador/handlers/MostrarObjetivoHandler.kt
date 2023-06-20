@@ -1,13 +1,13 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.vista.ventanas.VentanaDePapel
+import vista.ventanas.VentanaDePapel
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.text.Text
 import javafx.stage.Stage
 
-class MostrarObjetivoHandler(var textoDeObjetivo: Text?, nombreJugador: String?) : EventHandler<ActionEvent?> {
+class MostrarObjetivoHandler(var textoDeObjetivo: Text, nombreJugador: String) : EventHandler<ActionEvent?> {
     var textoDeJugador: Text? = null
 
     init {
@@ -16,9 +16,9 @@ class MostrarObjetivoHandler(var textoDeObjetivo: Text?, nombreJugador: String?)
 
     private fun prepararTextoJugador(nombre: String?) {
         textoDeJugador = Text("Objetivo de: $nombre")
-        textoDeJugador.setTranslateY(50.0)
-        textoDeJugador.setTranslateX(60.0)
-        textoDeJugador.setStyle("-fx-font-weight: bold")
+        textoDeJugador!!.setTranslateY(50.0)
+        textoDeJugador!!.setTranslateX(60.0)
+        textoDeJugador!!.setStyle("-fx-font-weight: bold")
     }
 
     override fun handle(actionEvent: ActionEvent?) {

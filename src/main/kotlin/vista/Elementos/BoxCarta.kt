@@ -1,6 +1,6 @@
 package vista.Elementos
 
-import edu.fiuba.algo3.Controlador.handlers.HandlerDeCarta
+import Controlador.handlers.HandlerDeCarta
 import modelo.Cartas.Carta
 import javafx.scene.Group
 import javafx.scene.paint.Paint

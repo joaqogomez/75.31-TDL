@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.modelo.Cartas.Carta
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
-import edu.fiuba.algo3.vista.ventanas.VentanaDePapel
+import modelo.Cartas.Carta
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.TextoNotificable
+import vista.ventanas.VentanaDePapel
 import javafx.scene.Node
 import javafx.scene.Scene
 import javafx.scene.input.MouseButton
@@ -26,7 +26,8 @@ class BoxCartaHandler(private var jugador: Jugador?, private val textoDeError: T
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
-        if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+        /*
+        if (mouseEvent!!.button == MouseButton.PRIMARY) {
             primeraCarta.getBox().activarse()
             try {
                 jugador.elegirCarta(primeraCarta, null, BoxCartaHandlerDos(primeraCarta, jugador, textoDeError))
@@ -39,18 +40,19 @@ class BoxCartaHandler(private var jugador: Jugador?, private val textoDeError: T
                 stage.close()
                 jugador.mostrarCartas()
             } catch (error: Exception) {
-                textoDeError.setText(error.message)
+                textoDeError!!.text = error.message
                 mostrarError()
             }
         }
+         */
     }
 
     private fun desarmarTextoDeError() {
-        textoDeError.setText("")
+        textoDeError!!.text = ""
     }
 
     private fun mostrarError() {
-        val ventana = VentanaDePapel(textoDeError)
+        val ventana = VentanaDePapel(textoDeError!!)
         ventana.prepararFondo(200, 300)
         val scena = Scene(ventana)
         val popUpDeCarta = Stage()

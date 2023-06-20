@@ -16,7 +16,7 @@ class Juego(cantidadDeJugadores: Int) {
     private lateinit var faseActual: FaseDeRonda
     private lateinit var faseAnterior: FaseDeRonda
     private var parser: Parser = Parser(turnoJugadores)
-    private lateinit var inventario: InventarioDeJuego
+    lateinit var inventario: InventarioDeJuego
     init {
         crearJugadores(cantidadDeJugadores)
     }
@@ -127,7 +127,7 @@ class Juego(cantidadDeJugadores: Int) {
         }
     }
 
-    private fun setNombreJugadorNumero(numero: Int, nombre: String) {
+    fun setNombreJugadorNumero(numero: Int, nombre: String) {
         val jugador = buscarNumero(numero)
         jugador.setNombre(nombre)
     }

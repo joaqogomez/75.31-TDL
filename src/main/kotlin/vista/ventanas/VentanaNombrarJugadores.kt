@@ -26,7 +26,7 @@ class VentanaNombrarJugadores(numeroDeJugadores: Int) : Group() {
     }
 
     private fun agregarCampos(numeroDeJugadores: Int) {
-        val textos = ArrayList<TextField?>()
+        val textos = ArrayList<TextField>()
         for (i in 1..numeroDeJugadores) {
             textos.add(CampoDeNombre(i))
         }

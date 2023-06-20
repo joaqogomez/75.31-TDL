@@ -1,13 +1,20 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.Controlador.Controlador
-import edu.fiuba.algo3.modelo.Batalla.Pais
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
-import edu.fiuba.algo3.vista.ventanas.VentanaDePapel
+import Controlador.Controlador
+import javafx.animation.PauseTransition
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
+import javafx.scene.Node
+import modelo.Batalla.Pais
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.TextoNotificable
+import vista.ventanas.VentanaDePapel
 import javafx.scene.Scene
 import javafx.scene.input.MouseEvent
 import javafx.stage.Stage
+import javafx.util.Duration
+import vista.ventanas.VentanaDados
+import vista.ventanas.VentanaVictoria
 
 class ConfirmacionAtaqueHandle(
     private var jugador: Jugador?,
@@ -19,7 +26,7 @@ class ConfirmacionAtaqueHandle(
         paisDestino = unPais
     }
 
-    override fun getCopy(): HandlerDePais? {
+    override fun getCopy(): HandlerDePais {
         return ConfirmacionAtaqueHandle(jugador, paisOrigen, textoDeError)
     }
 
@@ -33,34 +40,51 @@ class ConfirmacionAtaqueHandle(
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
+        /*
         try {
-            jugador.atacarPaisDesdeAVisual(paisOrigen, paisDestino)
+            val b = jugador?.atacarPaisDesdeA(paisOrigen!!, paisDestino!!)
+            val stageAyuda = Stage()
+            val sceneAyuda = Scene(VentanaDados(b!!.resultadoDadoAtacante, b.resultadoDadoDefensor), 300.0, 300.0)
+            stageAyuda.title = "Resultados"
+            stageAyuda.scene = sceneAyuda
+            stageAyuda.show()
+            val delay = PauseTransition(Duration.seconds(5.0))
+            delay.onFinished = EventHandler { event: ActionEvent? -> stageAyuda.close() }
+            delay.play()
+
             evaluarVictoriaDelJugador(mouseEvent)
             Controlador.reestablecerPaises(jugador, BotonAtacarHandle(jugador, textoDeError))
         } catch (excepcion: Exception) {
             if (excepcion.javaClass == NullPointerException::class.java) {
-                textoDeError.setText("Elige un pais tuyo")
+                textoDeError!!.text = "Elige un pais tuyo"
             } else {
-                textoDeError.setText(excepcion.message)
+                textoDeError!!.text = excepcion.message
                 Controlador.reestablecerPaises(jugador, BotonAtacarHandle(jugador, textoDeError))
             }
             mostrarError()
         }
+         */
     }
 
     private fun evaluarVictoriaDelJugador(evento: MouseEvent?) {
         try {
-            jugador.evaluarVictoria(evento)
+            if (jugador!!.gane()) {
+                val stage = (evento?.source as Node).scene.window as Stage
+                val victoria = VentanaVictoria(jugador!!)
+                val scenaFinal = Scene(victoria)
+                stage.scene = scenaFinal
+                stage.show()
+            }
         } catch (ignored: Exception) {
         }
     }
 
     private fun desarmarTextoDeError() {
-        textoDeError.setText("")
+        textoDeError!!.text = ""
     }
 
     private fun mostrarError() {
-        val ventana = VentanaDePapel(textoDeError)
+        val ventana = VentanaDePapel(textoDeError!!)
         ventana.prepararFondo(200, 500)
         val scena = Scene(ventana)
         val popUpDeCarta = Stage()

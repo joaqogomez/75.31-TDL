@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.modelo.Cartas.Carta
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
+import modelo.Cartas.Carta
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.TextoNotificable
 import javafx.scene.input.MouseEvent
 
 class BoxCartaHandlerDos(
@@ -25,6 +25,7 @@ class BoxCartaHandlerDos(
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
+        /*
         segundaCarta.getBox().activarse()
         try {
             jugador.elegirCarta(
@@ -34,9 +35,10 @@ class BoxCartaHandlerDos(
             )
         } catch (error: Exception) {
         }
+         */
     }
 
     private fun desarmarTextoDeError() {
-        textoDeError.setText("")
+        textoDeError!!.text = ""
     }
 }

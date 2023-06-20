@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.Controlador.Controlador
-import edu.fiuba.algo3.modelo.Batalla.Pais
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
+import Controlador.Controlador
+import modelo.Batalla.Pais
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.TextoNotificable
 import javafx.scene.input.MouseEvent
 
 class BotonMoverHandle(private var jugador: Jugador?, private val textoDeError: TextoNotificable?) : HandlerDePais {
@@ -30,6 +30,6 @@ class BotonMoverHandle(private var jugador: Jugador?, private val textoDeError: 
     }
 
     private fun desarmarTextoDeError() {
-        textoDeError.setText("")
+        textoDeError!!.text = ""
     }
 }

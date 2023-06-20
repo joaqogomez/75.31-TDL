@@ -1,5 +1,6 @@
 package modelo.JuegoYJugador
 
+import modelo.Batalla.Batalla
 import modelo.Batalla.Ejercitos
 import modelo.Batalla.Pais
 import modelo.Cartas.Carta
@@ -45,9 +46,10 @@ class Jugador(numeroDeJugador: Int) {
         inventarioDeJugador.agregarEjercitos(cantidadFichas)
     }
 
-    fun atacarPaisDesdeA(unPais: Pais, otroPais: Pais) {
-        unPais.atacarA(otroPais)
+    fun atacarPaisDesdeA(unPais: Pais, otroPais: Pais): Batalla {
+        val b = unPais.atacarA(otroPais)
         verificarOcupacion(otroPais)
+        return b
     }
 
     private fun verificarOcupacion(otroPais: Pais) {
@@ -115,7 +117,7 @@ class Jugador(numeroDeJugador: Int) {
         this.objetivo = objetivo
     }
 
-    private fun gane(): Boolean {
+    public fun gane(): Boolean {
         return objetivo.objetivoCumplido(paisesOcupados)
     }
 

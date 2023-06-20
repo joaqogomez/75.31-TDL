@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
 import javafx.application.Platform
 import javafx.event.ActionEvent

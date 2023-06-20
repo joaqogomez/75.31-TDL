@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.vista.ventanas.VentanaComoJugar
+import vista.ventanas.VentanaComoJugar
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene

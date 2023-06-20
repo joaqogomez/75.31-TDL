@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.Controlador.Controlador
-import edu.fiuba.algo3.musica.ControladorMusica
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
-import edu.fiuba.algo3.vista.ventanas.VentanaDePapel
+import Controlador.Controlador
+import musica.ControladorMusica
+import vista.Elementos.TextoNotificable
+import vista.ventanas.VentanaDePapel
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Node
@@ -12,9 +12,8 @@ import javafx.stage.Stage
 
 class AvanzarHandler : EventHandler<ActionEvent?> {
     override fun handle(actionEvent: ActionEvent?) {
-        val stage = (actionEvent.getSource() as Node).scene.window as Stage
-        val scena: Scene?
-        scena = try {
+        val stage = (actionEvent?.source as Node).scene.window as Stage
+        val scena: Scene? = try {
             Controlador.pedirMenuSiguiente()
         } catch (exception: Exception) {
             mostrarError(exception)
@@ -22,13 +21,14 @@ class AvanzarHandler : EventHandler<ActionEvent?> {
         }
         stage.scene = scena
         stage.show()
-        ControladorMusica.Companion.playEffect()
-        ControladorMusica.Companion.soundRestart()
+        val c = ControladorMusica.getInstance()
+        c.playEffect()
+        c.soundRestart()
     }
 
     private fun mostrarError(exception: Exception?) {
         val texto = TextoNotificable()
-        texto.text = exception.message
+        texto.text = exception!!.message
         val ventana = VentanaDePapel(texto)
         ventana.prepararFondo(200, 300)
         val scena = Scene(ventana)

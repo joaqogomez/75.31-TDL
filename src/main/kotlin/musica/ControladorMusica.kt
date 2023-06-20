@@ -3,9 +3,9 @@ package musica
 import javafx.scene.media.AudioClip
 
 class ControladorMusica private constructor() {
-    private var backgroundMusic: AudioClip = AudioClip("file:AgeOfEmpiresMainTheme.mp3")
-    private var effectMusic: AudioClip = AudioClip("file:campana_aoe.mp3")
-    private var victoryMusic: AudioClip = AudioClip("file:AgeofEmpires2VictoryMusic.mp3")
+    private var backgroundMusic: AudioClip = AudioClip("file:src/main/resources/AgeOfEmpiresMainTheme.mp3")
+    private var effectMusic: AudioClip = AudioClip("file:src/main/resources/campana_aoe.mp3")
+    private var victoryMusic: AudioClip = AudioClip("file:src/main/resources/AgeofEmpires2VictoryMusic.mp3")
 
     init {
         backgroundMusic.volume = 5.0

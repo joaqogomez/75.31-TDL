@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.vista.ventanas.VentanaCantidadJugadores
+import vista.ventanas.VentanaCantidadJugadores
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Node
@@ -17,7 +17,7 @@ class BotonComienzoHandler : EventHandler<ActionEvent?> {
     }
 
     override fun handle(actionEvent: ActionEvent?) {
-        val stage = (actionEvent.getSource() as Node).scene.window as Stage
+        val stage = (actionEvent?.source as Node).scene.window as Stage
         stage.scene = nextScene
         stage.fullScreenExitHint = ""
     }

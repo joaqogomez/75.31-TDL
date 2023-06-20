@@ -1,9 +1,9 @@
 package vista.Elementos
 
-import edu.fiuba.algo3.Controlador.handlers.AyudaHandler
-import edu.fiuba.algo3.Controlador.handlers.ComoJugarHandler
-import edu.fiuba.algo3.Controlador.handlers.CreditosHandler
-import edu.fiuba.algo3.Controlador.handlers.SalirHandler
+import Controlador.handlers.AyudaHandler
+import Controlador.handlers.ComoJugarHandler
+import Controlador.handlers.CreditosHandler
+import Controlador.handlers.SalirHandler
 import musica.MusicaOffHandler
 import musica.MusicaOnHandler
 import javafx.scene.control.Menu

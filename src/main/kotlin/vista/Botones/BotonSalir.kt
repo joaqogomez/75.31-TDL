@@ -1,6 +1,6 @@
 package vista.Botones
 
-import edu.fiuba.algo3.Controlador.handlers.CerrarHandler
+import Controlador.handlers.CerrarHandler
 import javafx.event.ActionEvent
 import javafx.scene.control.Button
 

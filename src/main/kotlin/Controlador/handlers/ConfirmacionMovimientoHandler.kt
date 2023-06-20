@@ -1,11 +1,11 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.Controlador.Controlador
-import edu.fiuba.algo3.modelo.Batalla.Pais
-import edu.fiuba.algo3.modelo.Excepciones.MovimientoDeEjercitoError
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
-import edu.fiuba.algo3.vista.ventanas.VentanaDePapel
+import Controlador.Controlador
+import modelo.Batalla.Pais
+import modelo.Excepciones.MovimientoDeEjercitoError
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.TextoNotificable
+import vista.ventanas.VentanaDePapel
 import javafx.scene.Scene
 import javafx.scene.input.MouseEvent
 import javafx.stage.Stage
@@ -34,6 +34,7 @@ class ConfirmacionMovimientoHandler(
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
+        /*
         try {
             jugador.moverFichasDeACon(paisOrigen, paisDestino, 1)
             Controlador.reestablecerPaises(jugador, BotonMoverHandle(jugador, textoDeError))
@@ -46,14 +47,16 @@ class ConfirmacionMovimientoHandler(
             }
             mostrarError()
         }
+
+         */
     }
 
     private fun desarmarTextoDeError() {
-        textoDeError.setText("")
+        textoDeError!!.text = ""
     }
 
     private fun mostrarError() {
-        val ventana = VentanaDePapel(textoDeError)
+        val ventana = VentanaDePapel(textoDeError!!)
         ventana.prepararFondo(200, 500)
         val scena = Scene(ventana)
         val popUpDeCarta = Stage()

@@ -1,6 +1,6 @@
 package vista.Botones
 
-import edu.fiuba.algo3.Controlador.handlers.BotonVolverASeleccionHandler
+import Controlador.handlers.BotonVolverASeleccionHandler
 import javafx.event.ActionEvent
 import javafx.scene.control.Button
 

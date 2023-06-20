@@ -7,7 +7,6 @@ import javafx.scene.Scene
 import javafx.stage.Stage
 
 class Tablero : Application() {
-    @Throws(Exception::class)
     override fun start(stage: Stage) {
         stage.title = "A.L.T.E.G.O."
         val controladorMusica = ControladorMusica.getInstance()
@@ -16,12 +15,5 @@ class Tablero : Application() {
         stage.scene = escenaComienzo
         stage.show()
         controladorMusica.playBackgroundMusic()
-    }
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            launch(*args)
-        }
     }
 }

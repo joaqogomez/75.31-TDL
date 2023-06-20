@@ -1,15 +1,16 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.Controlador.Controlador
-import edu.fiuba.algo3.vista.Elementos.Ficha
+import Controlador.Controlador
+import vista.Elementos.Ficha
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Node
 import javafx.scene.control.TextField
 import javafx.stage.Stage
+import java.util.*
 
-class BotonComenzarJuegoHandler(private val textos: ArrayList<TextField?>?) : EventHandler<ActionEvent?> {
-    private var fichas: ArrayList<Ficha?>? = null
+class BotonComenzarJuegoHandler(private val textos: ArrayList<TextField>?) : EventHandler<ActionEvent?> {
+    private var fichas: ArrayList<Ficha>? = null
     private val numeroDePaises = 50
 
     init {
@@ -18,13 +19,15 @@ class BotonComenzarJuegoHandler(private val textos: ArrayList<TextField?>?) : Ev
 
     private fun crearFichas() {
         fichas = ArrayList()
+        /*
         for (i in 0 until numeroDePaises) {
-            fichas.add(Ficha("#000000"))
+            fichas!!.add(Ficha("#000000"))
         }
+         */
     }
 
     override fun handle(actionEvent: ActionEvent?) {
-        val stage = (actionEvent.getSource() as Node).scene.window as Stage
+        val stage = (actionEvent?.source as Node).scene.window as Stage
         setearNombres()
         asociarFichas()
         val scena = Controlador.obtenerEscenaObjetivos()
@@ -33,10 +36,10 @@ class BotonComenzarJuegoHandler(private val textos: ArrayList<TextField?>?) : Ev
     }
 
     private fun setearNombres() {
-        Controlador.setearNombres(textos)
+        Controlador.setearNombres(textos!!)
     }
 
     private fun asociarFichas() {
-        Controlador.empezarJuego(fichas)
+        Controlador.empezarJuego(fichas!!)
     }
 }

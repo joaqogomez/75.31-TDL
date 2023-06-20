@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.Controlador.handlers
+package Controlador.handlers
 
-import edu.fiuba.algo3.modelo.Batalla.Pais
-import edu.fiuba.algo3.modelo.JuegoYJugador.Jugador
-import edu.fiuba.algo3.vista.Elementos.TextoNotificable
+import modelo.Batalla.Pais
+import modelo.JuegoYJugador.Jugador
+import vista.Elementos.TextoNotificable
 import javafx.scene.input.MouseEvent
 
 class AtaqueInvalidoHandler(var textoDeError: TextoNotificable?) : HandlerDePais {
@@ -27,6 +27,6 @@ class AtaqueInvalidoHandler(var textoDeError: TextoNotificable?) : HandlerDePais
     }
 
     private fun setTexto() {
-        textoDeError.setText("Selecciona un pais tuyo")
+        textoDeError?.text = "Selecciona un pais tuyo"
     }
 }
