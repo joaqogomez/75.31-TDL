@@ -11,7 +11,7 @@ import java.util.*
 
 class VentanaDados(resultadoDadoAtacante: ArrayList<Int>, resultadoDadoDefensor: ArrayList<Int>) : StackPane() {
     init {
-        val imagen = ImageView("file:papel.jpg")
+        val imagen = ImageView("file:src/main/resources/papel.jpg")
         imagen.fitHeight = 600.0
         imagen.fitWidth = 800.0
         imagen.fitHeightProperty()

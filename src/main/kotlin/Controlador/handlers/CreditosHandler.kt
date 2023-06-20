@@ -9,7 +9,7 @@ import javafx.stage.Stage
 class CreditosHandler : EventHandler<ActionEvent?> {
     override fun handle(actionEvent: ActionEvent?) {
         val stageCreditos = Stage()
-        val sceneCreditos = Scene(VentanaCreditos(), 450.0, 450.0)
+        val sceneCreditos = Scene(VentanaCreditos(), 700.0, 400.0)
         stageCreditos.title = "Creditos A.L.T.E.G.O."
         stageCreditos.scene = sceneCreditos
         stageCreditos.show()

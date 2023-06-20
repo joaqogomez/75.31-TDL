@@ -21,7 +21,7 @@ class VentanaCantidadJugadores : StackPane() {
         contenedor.top = BarraMenu()
         val mapa = HBox()
         val imageMapa = ImageView()
-        imageMapa.image = Image("file:tableroTEG.png")
+        imageMapa.image = Image("file:src/main/resources/tableroTEG.png")
         imageMapa.fitHeight = 600.0
         mapa.children.add(imageMapa)
         children.add(mapa)
@@ -29,7 +29,7 @@ class VentanaCantidadJugadores : StackPane() {
         children.add(contenedor)
         val panel = HBox()
         val imagePanel = ImageView()
-        imagePanel.image = Image("file:papel.jpg")
+        imagePanel.image = Image("file:src/main/resources/papel.jpg")
         imagePanel.fitHeight = 600.0
         imagePanel.fitWidth = 250.0
         mapa.children.add(imagePanel)

@@ -20,7 +20,7 @@ class VentanaDePapel(var texto: Text) : Group() {
 
     fun prepararFondo(altura: Int, anchura: Int) {
         val imagePanel = ImageView()
-        imagePanel.image = Image("file:papel.jpg")
+        imagePanel.image = Image("file:src/main/resources/papel.jpg")
         imagePanel.fitHeight = altura.toDouble()
         imagePanel.fitWidth = anchura.toDouble()
         children.add(imagePanel)

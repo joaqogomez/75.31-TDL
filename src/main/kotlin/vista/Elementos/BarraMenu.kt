@@ -24,7 +24,7 @@ class BarraMenu : MenuBar() {
         val opcionComoJugar = MenuItem("Como Jugar")
         val opcionCreditos = MenuItem("Creditos")
         val imagePanel = ImageView()
-        imagePanel.image = Image("file:papel.jpg")
+        imagePanel.image = Image("file:src/main/resources/papel.jpg")
         imagePanel.fitHeight = 30.0
         imagePanel.fitWidth = 1108.0
         opcionSalir.onAction = SalirHandler()

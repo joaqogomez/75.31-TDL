@@ -14,9 +14,9 @@ import javafx.scene.text.Text
 
 class VentanaCreditos : StackPane() {
     init {
-        val imagen = ImageView("file:papel.jpg")
-        imagen.fitHeight = 500.0
-        imagen.fitWidth = 500.0
+        val imagen = ImageView("file:src/main/resources/papel.jpg")
+        imagen.fitHeight = 600.0
+        imagen.fitWidth = 800.0
         imagen.fitHeightProperty()
         imagen.fitWidthProperty()
         children.add(imagen)
