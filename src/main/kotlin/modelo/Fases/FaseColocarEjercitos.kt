@@ -6,7 +6,7 @@ import modelo.JuegoYJugador.Jugador
 import modelo.SeleccionJugador
 
 class FaseColocarEjercitos(jugador: Jugador) : FaseDeRonda {
-    private var jugadorEnTurno: Jugador = jugador
+    override var jugadorEnTurno: Jugador = jugador
 
     override fun aplicarAccionesDeFase(jugador: Jugador, inventario: InventarioDeJuego) {
         jugador.pedirCarta(inventario)
@@ -29,5 +29,9 @@ class FaseColocarEjercitos(jugador: Jugador) : FaseDeRonda {
 
     override fun puedoPasar(): Boolean {
         return if (!jugadorEnTurno.quedanFichas()) true else throw ColocacionEjercitoError("Aun quedan fichas por colocar")
+    }
+
+    override fun tipo(): String {
+        return "colocar_ejercitos"
     }
 }

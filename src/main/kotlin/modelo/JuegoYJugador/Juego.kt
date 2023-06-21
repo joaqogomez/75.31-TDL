@@ -1,5 +1,6 @@
 package modelo.JuegoYJugador
 
+import javafx.scene.Scene
 import modelo.Batalla.Pais
 import modelo.Cartas.Carta
 import modelo.Fases.FaseDeRonda
@@ -12,7 +13,7 @@ import java.util.*
 
 class Juego(cantidadDeJugadores: Int) {
     private var turnoActual = 1
-    private var turnoJugadores: HashMap<Int, Jugador> = HashMap<Int, Jugador>()
+    var turnoJugadores: HashMap<Int, Jugador> = HashMap<Int, Jugador>()
     private lateinit var faseActual: FaseDeRonda
     private lateinit var faseAnterior: FaseDeRonda
     private var parser: Parser = Parser(turnoJugadores)
@@ -120,6 +121,14 @@ class Juego(cantidadDeJugadores: Int) {
         return siguiente
     }
 
+    fun prepararSiguienteFase() : FaseDeRonda {
+        faseAnterior.puedoPasar()
+        faseAnterior = faseActual
+        val siguiente = obtenerSiguienteEnTurno()
+
+        actualizarFase(siguiente)
+        return faseActual
+    }
 
     private fun actualizarFase(siguiente: Jugador) {
         if (esElUltimoJugador(siguiente)) {

@@ -7,19 +7,27 @@ import javafx.scene.Group
 import javafx.scene.paint.Paint
 import javafx.scene.shape.Circle
 import javafx.scene.text.Text
+import modelo.Ubicable
 
-class Ficha(color: String?, pais: Pais) : Circle() {
-    private var miPais: Pais
+class Ficha(ubicable: Ubicable) : Circle() {
+    private var color: String
+    private var miUbicable: Ubicable
     private val texto: Text
     private var textoNotificable: TextoNotificable? = null
 
     init {
+        miUbicable = ubicable
+        val nro = ubicable.nroJugador()
+        val colores = ColoresJugadores()
+        color = colores.getColor(nro)!!
         fill = Paint.valueOf(color)
         texto = Text("10")
         texto.fill = Paint.valueOf("#ffffff")
         texto.style = "-fx-font-weight: bold"
         radius = 12.0
-        miPais = pais
+
+        cambiarColorYCantidad(color, ubicable.ejercitos())
+        setPosicion(ubicable.posX(), ubicable.posY())
     }
 
     fun setPosicion(posX: Int, posY: Int) {
@@ -45,7 +53,7 @@ class Ficha(color: String?, pais: Pais) : Circle() {
         texto.isDisable = false
     }
 
-    fun notificar(color: String?, fichasDisponibles: Int?) {
+    fun cambiarColorYCantidad(color: String?, fichasDisponibles: Int?) {
         fill = Paint.valueOf(color)
         texto.text = fichasDisponibles.toString()
         if (textoNotificable != null) {
@@ -73,9 +81,5 @@ class Ficha(color: String?, pais: Pais) : Circle() {
         val miHandlerNuevo = handlerDelOtro.getCopy()
         miHandlerNuevo?.asociarPais(pais)
         agregarNuevoHandler(miHandlerNuevo)
-    }
-
-    fun asociarA(pais: Pais) {
-        miPais = pais
     }
 }

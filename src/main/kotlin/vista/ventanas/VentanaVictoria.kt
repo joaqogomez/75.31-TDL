@@ -8,6 +8,7 @@ import javafx.scene.Group
 import javafx.scene.control.Button
 import javafx.scene.paint.Paint
 import javafx.scene.text.Text
+import vista.Elementos.ColoresJugadores
 
 class VentanaVictoria(jugadorGanador: Jugador) : Group() {
     init {
@@ -42,8 +43,11 @@ class VentanaVictoria(jugadorGanador: Jugador) : Group() {
     ${ganador.nombreJugador}
     """
         )
+        val nro = ganador.getNumeroJugador()
+        val colores = ColoresJugadores()
+        val color = colores.getColor(nro)!!
         textoDeVictoria.style = "-fx-font: 24 sans-serif; -fx-font-weight: bold;"
-        textoDeVictoria.fill = Paint.valueOf(ganador.color)
+        textoDeVictoria.fill = Paint.valueOf(color)
         textoDeVictoria.translateX = 900.0
         textoDeVictoria.translateY = 50.0
         children.add(textoDeVictoria)

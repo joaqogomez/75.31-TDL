@@ -14,4 +14,13 @@ class ObjetivoDerrotar(var jugador: Jugador) : Objetivo {
     override fun setJugadorAuxiliar(actual: Jugador, auxiliar: Jugador) {
         if (jugador == null || jugador.equals(actual)) jugador = auxiliar
     }
+
+    override fun tipo(): String {
+        return "derrotar"
+    }
+
+    override fun texto(): String {
+        return "Derrotar al jugador: " + jugador.nombreJugador
+    }
+
 }

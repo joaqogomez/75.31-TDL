@@ -5,7 +5,7 @@ import modelo.JuegoYJugador.Jugador
 
 
 open class Ejercitos {
-    private var comandante: Jugador
+    var comandante: Jugador
     protected var condicionActual: EstadoEjercitos
 
     constructor() {

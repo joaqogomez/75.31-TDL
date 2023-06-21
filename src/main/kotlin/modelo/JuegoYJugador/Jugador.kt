@@ -7,15 +7,15 @@ import modelo.Cartas.Carta
 import modelo.Excepciones.CanjesError
 import modelo.Excepciones.ColocacionEjercitoError
 import modelo.Objetivo.Objetivo
+import modelo.Ubicable
 import java.util.*
 
-class Jugador(numeroDeJugador: Int) {
+class Jugador(numeroDeJugador: Int) : Ubicable {
     private val numeroJugador: Int = numeroDeJugador
     lateinit var nombreJugador: String
-    lateinit var color: String
     val paisesOcupados: ArrayList<Pais> = ArrayList<Pais>()
-    private val inventarioDeJugador: InventarioDeJugador = InventarioDeJugador(this)
-    private lateinit var objetivo: Objetivo
+    val inventarioDeJugador: InventarioDeJugador = InventarioDeJugador(this)
+    lateinit var objetivo: Objetivo
 
 
     fun ocupa(unPais: Pais) {
@@ -131,6 +131,22 @@ class Jugador(numeroDeJugador: Int) {
 
     fun getNumeroJugador(): Int {
         return numeroJugador
+    }
+
+    override fun ejercitos(): Int {
+        return inventarioDeJugador.fichasDisponibles
+    }
+
+    override fun nroJugador(): Int {
+        return numeroJugador
+    }
+
+    override fun posX(): Int {
+        return 15
+    }
+
+    override fun posY(): Int {
+        return 15
     }
 
 }
