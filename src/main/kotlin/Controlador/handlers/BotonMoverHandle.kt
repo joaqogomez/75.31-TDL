@@ -26,7 +26,7 @@ class BotonMoverHandle(private var jugador: Jugador?, private val textoDeError: 
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
-        Controlador.habilitarPaises(pais, ConfirmacionMovimientoHandler(jugador, pais, textoDeError))
+        Controlador.habilitarPaises(pais!!, ConfirmacionMovimientoHandler(jugador, pais, textoDeError))
     }
 
     private fun desarmarTextoDeError() {

@@ -10,7 +10,7 @@ import modelo.Objetivo.Objetivo
 import modelo.Ubicable
 import java.util.*
 
-class Jugador(numeroDeJugador: Int) : Ubicable {
+class Jugador(numeroDeJugador: Int) : Ubicable() {
     private val numeroJugador: Int = numeroDeJugador
     lateinit var nombreJugador: String
     val paisesOcupados: ArrayList<Pais> = ArrayList<Pais>()
@@ -44,6 +44,7 @@ class Jugador(numeroDeJugador: Int) : Ubicable {
 
     fun agregarFichas(cantidadFichas: Int) {
         inventarioDeJugador.agregarEjercitos(cantidadFichas)
+        notificar()
     }
 
     fun atacarPaisDesdeA(unPais: Pais, otroPais: Pais): Batalla {
@@ -69,10 +70,10 @@ class Jugador(numeroDeJugador: Int) : Ubicable {
     }
 
     fun agregarFichasA(numeroDeFichas: Int, unPais: Pais) {
-        if (ocupeElPais(unPais)) inventarioDeJugador.agregarFichasA(
-            numeroDeFichas,
-            unPais
-        ) else throw ColocacionEjercitoError("Debes elegir a un pais tuyo")
+        if (ocupeElPais(unPais)){
+            inventarioDeJugador.agregarFichasA(numeroDeFichas, unPais)
+            notificar()
+        } else throw ColocacionEjercitoError("Debes elegir a un pais tuyo")
     }
 
     fun recibirCarta(unaCarta: Carta?) {

@@ -7,7 +7,7 @@ import modelo.Ubicable
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Pais(nombre: String) :Ubicable {
+class Pais(nombre: String) : Ubicable() {
     var ejercitos: Ejercitos
     private val nombreDelPais: String
     private val paisesConectados: ArrayList<Pais>
@@ -22,6 +22,7 @@ class Pais(nombre: String) :Ubicable {
 
     fun recibirTropas(otrosEjercitos: Ejercitos) {
         ejercitos = ejercitos.disputarDominioDe(this, otrosEjercitos)
+        notificar()
     }
 
     fun getNombreDelPais(): String {
@@ -38,6 +39,7 @@ class Pais(nombre: String) :Ubicable {
 
     fun agregarEjercito(cantidadDeEjercitos: Int) {
         ejercitos.agregarEjercitos(cantidadDeEjercitos)
+        notificar()
     }
 
     fun atacarA(otroPais: Pais): Batalla {
@@ -45,6 +47,7 @@ class Pais(nombre: String) :Ubicable {
         val batalla = Batalla()
         batalla.atacar(ejercitos, otroPais.ejercitos)
         otroPais.recibirTropas(ejercitos)
+        notificar()
         return batalla
     }
 
@@ -61,6 +64,7 @@ class Pais(nombre: String) :Ubicable {
             throw MovimientoDeEjercitoError("Debes mover el ejercito de tu equipo a otro tuyo y debe ser limitrofe")
         }
         ejercitos.moverEjercitoACon(otroPais.ejercitos, cantidad)
+        notificar()
     }
 
     fun setCoordenadas(parDeCoordenadas: Coordenadas) {

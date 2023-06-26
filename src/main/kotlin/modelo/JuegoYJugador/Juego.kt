@@ -124,13 +124,11 @@ class Juego(cantidadDeJugadores: Int) {
     fun prepararSiguienteFase() : FaseDeRonda {
         faseAnterior.puedoPasar()
         faseAnterior = faseActual
-        val siguiente = obtenerSiguienteEnTurno()
-
-        actualizarFase(siguiente)
+        obtenerSiguienteEnTurno()
         return faseActual
     }
 
-    private fun actualizarFase(siguiente: Jugador) {
+    fun actualizarFase(siguiente: Jugador) {
         if (esElUltimoJugador(siguiente)) {
             faseActual = faseActual.cambiarFase(siguiente)
         }

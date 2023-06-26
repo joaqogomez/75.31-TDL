@@ -1,5 +1,7 @@
 package Controlador
 
+import Controlador.handlers.BotonAgregarEjercitoHandle
+import Controlador.handlers.BotonAtacarHandle
 import Controlador.handlers.HandlerDePais
 import javafx.scene.Node
 import modelo.Batalla.Pais
@@ -15,12 +17,13 @@ import vista.Botones.BotonMostrarCartas
 import vista.Botones.BotonMostrarObjetivo
 import vista.Elementos.CampoDeNombre
 import vista.Elementos.ColoresJugadores
+import vista.Elementos.TextoNotificable
 import vista.ventanas.*
 import java.util.*
 
 object Controlador {
     private var fichas: ArrayList<Ficha>? = null
-    private var fichas_jugadores: ArrayList<Ficha>? = null
+    private var fichas_jugadores: HashMap<Int, Ficha>? = null
     private var teg: Juego? = null
     fun setearJuego(numeroJugadores: Int) {
         teg = Juego(numeroJugadores)
@@ -39,12 +42,11 @@ object Controlador {
         fichas = ArrayList()
         for (i in 0 until inventario.cantidadDePaises()) {
             fichas!!.add(Ficha(paises[i]))
-            paises[i].ejercitos.getCantidadEjercitos()
         }
-        fichas_jugadores = ArrayList()
+        fichas_jugadores = HashMap<Int, Ficha>()
         for (jugador in teg!!.turnoJugadores.values) {
             var ubicable: Ubicable = jugador
-            fichas_jugadores!!.add(Ficha(ubicable))
+            fichas_jugadores!!.put(jugador.getNumeroJugador(), Ficha(ubicable))
         }
     }
 
@@ -56,14 +58,14 @@ object Controlador {
     fun pedirMenuSiguiente(): Scene? {
         val fase = teg!!.prepararSiguienteFase()
         val ventana = prepararMenu(fase)
+        teg!!.actualizarFase(fase.jugadorEnTurno)
         return Scene(VentanaJuego(fichas!!, ventana))
        //return teg.prepararMenuSiguiente()
-        return null
     }
 
     private fun prepararMenu(fase: FaseDeRonda): VentanaMenu {
         val jugadorEnTurno = fase.jugadorEnTurno
-        val ficha = fichas_jugadores!![jugadorEnTurno.nroJugador()]
+        val ficha = fichas_jugadores!![jugadorEnTurno.nroJugador()]!!
         val nombreDelJugador = Text("Turno de: " + jugadorEnTurno.nombreJugador)
         nombreDelJugador.style = "-fx-font-weight: bold"
         nombreDelJugador.translateY = 50.0
@@ -71,7 +73,13 @@ object Controlador {
 
         when (fase.tipo()) {
             "atacar" -> {
-
+                val textoDeError = TextoNotificable()
+                textoDeError.setPosicion(870, 550)
+                val handlerGeneral = BotonAtacarHandle(jugadorEnTurno, textoDeError)
+                handlerGeneral.setJugadorEnTurno(jugadorEnTurno)
+                for (ficha_pais in fichas!!) {
+                    ficha_pais.agregarNuevoHandler(handlerGeneral.getCopy())
+                }
                 val menuAPreparar: VentanaMenu = VentanaMenuAtacar(ficha)
                 val f = FabricaTextoObjetivo()
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
@@ -102,6 +110,13 @@ object Controlador {
                 return menuAPreparar
             }
             "primera_colocacion" -> {
+                val textoDeError = TextoNotificable()
+                textoDeError.setPosicion(900, 550)
+                val handlerGeneral = BotonAgregarEjercitoHandle(jugadorEnTurno, textoDeError)
+                handlerGeneral.setJugadorEnTurno(jugadorEnTurno)
+                for (ficha_pais in fichas!!) {
+                    ficha_pais.agregarNuevoHandler(handlerGeneral.getCopy())
+                }
                 val menuAPreparar: VentanaMenu = VentanaMenuColocacion(ficha)
                 val f = FabricaTextoObjetivo()
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
@@ -115,6 +130,13 @@ object Controlador {
                 return menuAPreparar
             }
             "segunda_colocacion" -> {
+                val textoDeError = TextoNotificable()
+                textoDeError.setPosicion(900, 550)
+                val handlerGeneral = BotonAgregarEjercitoHandle(jugadorEnTurno, textoDeError)
+                handlerGeneral.setJugadorEnTurno(jugadorEnTurno)
+                for (ficha_pais in fichas!!) {
+                    ficha_pais.agregarNuevoHandler(handlerGeneral.getCopy())
+                }
                 val menuAPreparar: VentanaMenu = VentanaMenuColocacion(ficha)
                 val f = FabricaTextoObjetivo()
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
@@ -160,8 +182,13 @@ object Controlador {
         return Scene(objetivos)
     }
 
-    fun habilitarPaises(pais: Pais?, confirmacionAtaqueHandle: HandlerDePais?) {
-        //teg.habilitarPaisesParaAtaque(pais, confirmacionAtaqueHandle)
+    fun habilitarPaises(pais: Pais, confirmacionAtaqueHandle: HandlerDePais) {
+        for (ficha in fichas!!) {
+            val paisDestino = ficha.miUbicable as Pais
+            if (paisDestino != pais) {
+                ficha.agregarNuevoHandler(confirmacionAtaqueHandle.getCopy())
+            }
+        }
     }
 
     fun habilitarPaisesParaColocacion(handler: HandlerDePais?) {
@@ -169,6 +196,12 @@ object Controlador {
     }
 
     fun reestablecerPaises(jugador: Jugador?, handler: HandlerDePais?) {
-        //teg.reestablecerPaises(jugador, handler)
+        for (ficha in fichas!!) {
+            val pais = ficha.miUbicable as Pais
+            ficha.limpiarHandler()
+            if (pais.ejercitos.comandante == jugador!!) {
+                ficha.agregarNuevoHandler(handler!!.getCopy())
+            }
+        }
     }
 }

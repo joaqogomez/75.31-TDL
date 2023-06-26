@@ -9,6 +9,7 @@ class TextoNotificable : Text {
     constructor(fichaEscuchada: Ficha) {
         fichaEscuchada.notificame(this)
         text = "Fichas restantes: " + fichaEscuchada.getCantidad().text
+        print(text)
         this.setStyle()
     }
 

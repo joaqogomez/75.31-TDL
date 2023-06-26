@@ -29,7 +29,7 @@ class BotonAtacarHandle(private var jugador: Jugador?, private val textoDeError:
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
-        Controlador.habilitarPaises(pais, ConfirmacionAtaqueHandle(jugador, pais, textoDeError))
+        Controlador.habilitarPaises(pais!!, ConfirmacionAtaqueHandle(jugador, pais, textoDeError))
     }
 
     private fun desarmarTextoDeError() {

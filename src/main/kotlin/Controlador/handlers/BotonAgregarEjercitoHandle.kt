@@ -31,15 +31,14 @@ class BotonAgregarEjercitoHandle(private var jugador: Jugador?, private val text
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
-        /*
+
         try {
-            jugador.agregarFichasA(1, pais)
+            jugador!!.agregarFichasA(1, pais!!)
             Controlador.habilitarPaisesParaColocacion(BotonAgregarEjercitoHandle(jugador, textoDeError))
         } catch (exception: Exception) {
             generarTextoDeError(exception)
             mostrarError()
         }
-         */
     }
 
     private fun desarmarTextoDeError() {

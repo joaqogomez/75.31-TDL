@@ -1,7 +1,7 @@
 package modelo
-interface Ubicable {
-    fun ejercitos(): Int
-    fun nroJugador(): Int
-    fun posX(): Int
-    fun posY(): Int
+abstract class Ubicable : Observable() {
+    abstract fun ejercitos(): Int
+    abstract fun nroJugador(): Int
+    abstract fun posX(): Int
+    abstract fun posY(): Int
 }

@@ -7,11 +7,12 @@ import javafx.scene.Group
 import javafx.scene.paint.Paint
 import javafx.scene.shape.Circle
 import javafx.scene.text.Text
+import modelo.Observador
 import modelo.Ubicable
 
-class Ficha(ubicable: Ubicable) : Circle() {
+class Ficha(ubicable: Ubicable) : Circle(), Observador {
     private var color: String
-    private var miUbicable: Ubicable
+    var miUbicable: Ubicable
     private val texto: Text
     private var textoNotificable: TextoNotificable? = null
 
@@ -25,7 +26,7 @@ class Ficha(ubicable: Ubicable) : Circle() {
         texto.fill = Paint.valueOf("#ffffff")
         texto.style = "-fx-font-weight: bold"
         radius = 12.0
-
+        ubicable.agregar_observador(this)
         cambiarColorYCantidad(color, ubicable.ejercitos())
         setPosicion(ubicable.posX(), ubicable.posY())
     }
@@ -51,6 +52,8 @@ class Ficha(ubicable: Ubicable) : Circle() {
         texto.onMouseClicked = handler
         this.isDisable = false
         texto.isDisable = false
+        handler!!.asociarPais(miUbicable as Pais)
+
     }
 
     fun cambiarColorYCantidad(color: String?, fichasDisponibles: Int?) {
@@ -62,6 +65,8 @@ class Ficha(ubicable: Ubicable) : Circle() {
     }
 
     fun getCantidad(): Text {
+        print(miUbicable)
+        texto.text = miUbicable.ejercitos().toString()
         return texto
     }
 
@@ -81,5 +86,12 @@ class Ficha(ubicable: Ubicable) : Circle() {
         val miHandlerNuevo = handlerDelOtro.getCopy()
         miHandlerNuevo?.asociarPais(pais)
         agregarNuevoHandler(miHandlerNuevo)
+    }
+
+    override fun notificar() {
+        val nro = miUbicable.nroJugador()
+        val colores = ColoresJugadores()
+        color = colores.getColor(nro)!!
+        cambiarColorYCantidad(color, miUbicable.ejercitos())
     }
 }

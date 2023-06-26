@@ -40,7 +40,7 @@ class ConfirmacionAtaqueHandle(
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
-        /*
+
         try {
             val b = jugador?.atacarPaisDesdeA(paisOrigen!!, paisDestino!!)
             val stageAyuda = Stage()
@@ -63,7 +63,6 @@ class ConfirmacionAtaqueHandle(
             }
             mostrarError()
         }
-         */
     }
 
     private fun evaluarVictoriaDelJugador(evento: MouseEvent?) {
