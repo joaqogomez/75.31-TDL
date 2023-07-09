@@ -20,4 +20,12 @@ class ObjetivoConquistar(var primario: Continente,var secundario: Continente,var
     }
 
     override fun setJugadorAuxiliar(actual: Jugador, auxiliar: Jugador) {}
+    override fun tipo(): String {
+        return "conquistar"
+    }
+
+    override fun texto(): String {
+        return """Conquistar: ${primario.nombre}
+$cantidadAConquistarSecundario paises de: ${secundario.nombre}"""
+    }
 }

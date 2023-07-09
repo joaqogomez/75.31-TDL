@@ -1,20 +1,21 @@
 package modelo.JuegoYJugador
 
+import modelo.Batalla.Batalla
 import modelo.Batalla.Ejercitos
 import modelo.Batalla.Pais
 import modelo.Cartas.Carta
 import modelo.Excepciones.CanjesError
 import modelo.Excepciones.ColocacionEjercitoError
 import modelo.Objetivo.Objetivo
+import modelo.Ubicable
 import java.util.*
 
-class Jugador(numeroDeJugador: Int) {
+class Jugador(numeroDeJugador: Int) : Ubicable() {
     private val numeroJugador: Int = numeroDeJugador
     lateinit var nombreJugador: String
-    lateinit var color: String
     val paisesOcupados: ArrayList<Pais> = ArrayList<Pais>()
-    private val inventarioDeJugador: InventarioDeJugador = InventarioDeJugador(this)
-    private lateinit var objetivo: Objetivo
+    val inventarioDeJugador: InventarioDeJugador = InventarioDeJugador(this)
+    lateinit var objetivo: Objetivo
 
 
     fun ocupa(unPais: Pais) {
@@ -43,11 +44,13 @@ class Jugador(numeroDeJugador: Int) {
 
     fun agregarFichas(cantidadFichas: Int) {
         inventarioDeJugador.agregarEjercitos(cantidadFichas)
+        notificar()
     }
 
-    fun atacarPaisDesdeA(unPais: Pais, otroPais: Pais) {
-        unPais.atacarA(otroPais)
+    fun atacarPaisDesdeA(unPais: Pais, otroPais: Pais): Batalla {
+        val b = unPais.atacarA(otroPais)
         verificarOcupacion(otroPais)
+        return b
     }
 
     private fun verificarOcupacion(otroPais: Pais) {
@@ -67,10 +70,10 @@ class Jugador(numeroDeJugador: Int) {
     }
 
     fun agregarFichasA(numeroDeFichas: Int, unPais: Pais) {
-        if (ocupeElPais(unPais)) inventarioDeJugador.agregarFichasA(
-            numeroDeFichas,
-            unPais
-        ) else throw ColocacionEjercitoError("Debes elegir a un pais tuyo")
+        if (ocupeElPais(unPais)){
+            inventarioDeJugador.agregarFichasA(numeroDeFichas, unPais)
+            notificar()
+        } else throw ColocacionEjercitoError("Debes elegir a un pais tuyo")
     }
 
     fun recibirCarta(unaCarta: Carta?) {
@@ -115,7 +118,7 @@ class Jugador(numeroDeJugador: Int) {
         this.objetivo = objetivo
     }
 
-    private fun gane(): Boolean {
+    public fun gane(): Boolean {
         return objetivo.objetivoCumplido(paisesOcupados)
     }
 
@@ -129,6 +132,22 @@ class Jugador(numeroDeJugador: Int) {
 
     fun getNumeroJugador(): Int {
         return numeroJugador
+    }
+
+    override fun ejercitos(): Int {
+        return inventarioDeJugador.fichasDisponibles
+    }
+
+    override fun nroJugador(): Int {
+        return numeroJugador
+    }
+
+    override fun posX(): Int {
+        return 15
+    }
+
+    override fun posY(): Int {
+        return 15
     }
 
 }

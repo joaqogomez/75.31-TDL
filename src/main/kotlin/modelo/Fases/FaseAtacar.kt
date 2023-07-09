@@ -5,8 +5,7 @@ import modelo.JuegoYJugador.Jugador
 import modelo.SeleccionJugador
 
 class FaseAtacar(jugador: Jugador) : FaseDeRonda {
-
-    private var jugadorEnTurno: Jugador = jugador
+    override var jugadorEnTurno: Jugador = jugador
 
     override fun aplicarAccionesDeFase(jugador: Jugador, inventario: InventarioDeJuego) {
         jugadorEnTurno = jugador
@@ -27,6 +26,10 @@ class FaseAtacar(jugador: Jugador) : FaseDeRonda {
 
     override fun puedoPasar(): Boolean {
         return true
+    }
+
+    override fun tipo(): String {
+        return "atacar"
     }
 
 }

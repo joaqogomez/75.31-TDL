@@ -9,8 +9,8 @@ import java.util.*
 
 class InventarioDeJugador(dueno: Jugador) {
     private val mano: ManoDeCartas = ManoDeCartas()
-    private var fichasDisponibles = 0
-    private val duenoDelCuartel: Jugador = dueno
+    var fichasDisponibles = 0
+    val duenoDelCuartel: Jugador = dueno
 
     fun recibirCarta(unaCarta: Carta) {
         mano.recibirCarta(unaCarta)

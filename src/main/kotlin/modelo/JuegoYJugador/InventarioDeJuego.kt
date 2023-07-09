@@ -11,7 +11,7 @@ class InventarioDeJuego(mazoDeCartas: ArrayList<Carta>, continentes: ArrayList<C
 
     var mazoDeCartas: Mazo = Mazo(mazoDeCartas)
     var continentes: ArrayList<Continente> = continentes
-    private lateinit var paises: List<Pais>
+    lateinit var paises: List<Pais>
 
     fun ejercitosPorContinentesConquistados(paisesOcupados: ArrayList<Pais>): Int {
         var ejercitosTotal = 0

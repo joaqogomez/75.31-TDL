@@ -3,15 +3,16 @@ package modelo.Batalla
 import modelo.Excepciones.AtaqueNoPermitidoError
 import modelo.Excepciones.MovimientoDeEjercitoError
 import modelo.Parser.Coordenadas
+import modelo.Ubicable
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Pais(nombre: String) {
-    private var ejercitos: Ejercitos
+class Pais(nombre: String) : Ubicable() {
+    var ejercitos: Ejercitos
     private val nombreDelPais: String
     private val paisesConectados: ArrayList<Pais>
-    private var posX = 0
-    private var posY = 0
+    var posX = 0
+    var posY = 0
 
     init {
         ejercitos = EjercitosNulos()
@@ -21,6 +22,7 @@ class Pais(nombre: String) {
 
     fun recibirTropas(otrosEjercitos: Ejercitos) {
         ejercitos = ejercitos.disputarDominioDe(this, otrosEjercitos)
+        notificar()
     }
 
     fun getNombreDelPais(): String {
@@ -37,13 +39,17 @@ class Pais(nombre: String) {
 
     fun agregarEjercito(cantidadDeEjercitos: Int) {
         ejercitos.agregarEjercitos(cantidadDeEjercitos)
+        notificar()
     }
 
-    fun atacarA(otroPais: Pais) {
+    fun atacarA(otroPais: Pais): Batalla {
         verificarPosibilidadDeAtaque(otroPais)
         val batalla = Batalla()
         batalla.atacar(ejercitos, otroPais.ejercitos)
         otroPais.recibirTropas(ejercitos)
+        notificar()
+        otroPais.notificar()
+        return batalla
     }
 
     private fun esDelMismoEquipo(otroPais: Pais): Boolean {
@@ -59,6 +65,8 @@ class Pais(nombre: String) {
             throw MovimientoDeEjercitoError("Debes mover el ejercito de tu equipo a otro tuyo y debe ser limitrofe")
         }
         ejercitos.moverEjercitoACon(otroPais.ejercitos, cantidad)
+        notificar()
+        otroPais.notificar()
     }
 
     fun setCoordenadas(parDeCoordenadas: Coordenadas) {
@@ -73,6 +81,22 @@ class Pais(nombre: String) {
         if (!esLimitrofe(otroPais)) {
             throw AtaqueNoPermitidoError("No se puede atacar a un pais no limitrofe")
         }
+    }
+
+    override fun ejercitos(): Int {
+        return ejercitos.getCantidadEjercitos()
+    }
+
+    override fun nroJugador(): Int {
+        return ejercitos.comandante.getNumeroJugador()
+    }
+
+    override fun posX(): Int {
+        return posX
+    }
+
+    override fun posY(): Int {
+        return posY
     }
 
 }

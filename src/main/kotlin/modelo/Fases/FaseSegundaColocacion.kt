@@ -7,7 +7,7 @@ import modelo.SeleccionJugador
 
 class FaseSegundaColocacion(jugador: Jugador) : FaseDeRonda {
     private val fichasAAgregar = 3
-    private var jugadorEnTurno: Jugador = jugador
+    override var jugadorEnTurno: Jugador = jugador
 
 
     override fun aplicarAccionesDeFase(jugador: Jugador, inventario: InventarioDeJuego) {
@@ -26,5 +26,9 @@ class FaseSegundaColocacion(jugador: Jugador) : FaseDeRonda {
 
     override fun puedoPasar(): Boolean {
         return if (!jugadorEnTurno.quedanFichas()) true else throw ColocacionEjercitoError("Aun quedan fichas por colocar")
+    }
+
+    override fun tipo(): String {
+        return "segunda_colocacion"
     }
 }

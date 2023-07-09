@@ -11,5 +11,12 @@ class ObjetivoGeneral(var cantidadDePaisesAConquistar: Int) : Objetivo {
     }
 
     override fun setJugadorAuxiliar(actual: Jugador, auxiliar: Jugador) {}
+    override fun tipo(): String {
+        return "general"
+    }
+
+    override fun texto(): String {
+        return "Conquistar $cantidadDePaisesAConquistar paises."
+    }
 
 }
