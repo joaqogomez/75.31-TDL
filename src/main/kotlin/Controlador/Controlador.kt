@@ -1,24 +1,17 @@
 package Controlador
 
-import Controlador.handlers.BotonAgregarEjercitoHandle
-import Controlador.handlers.BotonAtacarHandle
-import Controlador.handlers.BotonMoverHandle
-import Controlador.handlers.HandlerDePais
+import Controlador.handlers.*
 import javafx.scene.Node
 import modelo.Batalla.Pais
 import modelo.JuegoYJugador.Juego
 import modelo.JuegoYJugador.Jugador
-import vista.Elementos.Ficha
 import javafx.scene.Scene
 import javafx.scene.control.TextField
 import javafx.scene.text.Text
 import modelo.Fases.FaseDeRonda
 import modelo.Ubicable
-import vista.Botones.BotonMostrarCartas
 import vista.Botones.BotonMostrarObjetivo
-import vista.Elementos.CampoDeNombre
-import vista.Elementos.ColoresJugadores
-import vista.Elementos.TextoNotificable
+import vista.Elementos.*
 import vista.ventanas.*
 import java.util.*
 
@@ -93,11 +86,14 @@ object Controlador {
                 return menuAPreparar
             }
             "colocar_ejercitos" -> {
+                val textoDeError = TextoNotificable()
+                textoDeError.setPosicion(900, 550)
+                val handlerGeneral = BotonAgregarEjercitoHandle(jugadorEnTurno, textoDeError)
+                handlerGeneral.setJugadorEnTurno(jugadorEnTurno)
+                for (ficha_pais in fichas!!) {
+                    ficha_pais.agregarNuevoHandler(handlerGeneral.getCopy())
+                }
                 val menuAPreparar: VentanaMenu = VentanaMenuColocacion(ficha)
-                val boton =  BotonMostrarCartas(jugadorEnTurno.inventarioDeJugador)
-                boton.translateX = 920.0
-                boton.translateY = 550.0
-                menuAPreparar.children.add(boton)
                 val f = FabricaTextoObjetivo()
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
                 val colores = ColoresJugadores()

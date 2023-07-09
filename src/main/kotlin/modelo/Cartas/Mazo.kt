@@ -6,7 +6,7 @@ import java.util.*
 
 class Mazo(cartas: ArrayList<Carta>) {
 
-    private val cartas: ArrayList<Carta>
+    val cartas: ArrayList<Carta>
 
     private fun asociarmeLasCartas(cartas: ArrayList<Carta>) {
         for (carta in cartas) {
