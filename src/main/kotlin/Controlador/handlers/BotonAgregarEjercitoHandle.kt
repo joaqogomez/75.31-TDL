@@ -45,14 +45,13 @@ class BotonAgregarEjercitoHandle(private var jugador: Jugador?, private val text
         textoDeError!!.text = ""
     }
 
-    private fun generarTextoDeError(exception: Exception?) {
-        /*
+    private fun generarTextoDeError(exception: Exception) {
+
         if (ColocacionEjercitoError::class.java == exception.javaClass) {
-            textoDeError.setText("Ese pais no es tuyo: " + pais.getNombreDelPais())
+            textoDeError!!.text = "Ese pais no es tuyo: " + pais!!.getNombreDelPais()
         } else {
-            textoDeError.setText("No tenes mas fichas!")
+            textoDeError!!.text = "No tenes mas fichas!"
         }
-         */
     }
 
     private fun mostrarError() {
