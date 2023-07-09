@@ -34,21 +34,19 @@ class ConfirmacionMovimientoHandler(
 
     override fun handle(mouseEvent: MouseEvent?) {
         desarmarTextoDeError()
-        /*
+
         try {
-            jugador.moverFichasDeACon(paisOrigen, paisDestino, 1)
+            jugador!!.moverFichasDeACon(paisOrigen!!, paisDestino!!, 1)
             Controlador.reestablecerPaises(jugador, BotonMoverHandle(jugador, textoDeError))
         } catch (excepcion: Exception) {
             if (excepcion.javaClass == MovimientoDeEjercitoError::class.java) {
-                textoDeError.setText(excepcion.message)
+                textoDeError!!.text = excepcion.message
                 Controlador.reestablecerPaises(jugador, BotonMoverHandle(jugador, textoDeError))
             } else {
-                textoDeError.setText("Elige un pais tuyo")
+                textoDeError!!.text = "Elige un pais tuyo"
             }
             mostrarError()
         }
-
-         */
     }
 
     private fun desarmarTextoDeError() {

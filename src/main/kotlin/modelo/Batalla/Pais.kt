@@ -48,6 +48,7 @@ class Pais(nombre: String) : Ubicable() {
         batalla.atacar(ejercitos, otroPais.ejercitos)
         otroPais.recibirTropas(ejercitos)
         notificar()
+        otroPais.notificar()
         return batalla
     }
 
@@ -65,6 +66,7 @@ class Pais(nombre: String) : Ubicable() {
         }
         ejercitos.moverEjercitoACon(otroPais.ejercitos, cantidad)
         notificar()
+        otroPais.notificar()
     }
 
     fun setCoordenadas(parDeCoordenadas: Coordenadas) {

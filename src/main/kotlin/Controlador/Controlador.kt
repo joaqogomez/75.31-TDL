@@ -2,6 +2,7 @@ package Controlador
 
 import Controlador.handlers.BotonAgregarEjercitoHandle
 import Controlador.handlers.BotonAtacarHandle
+import Controlador.handlers.BotonMoverHandle
 import Controlador.handlers.HandlerDePais
 import javafx.scene.Node
 import modelo.Batalla.Pais
@@ -60,7 +61,6 @@ object Controlador {
         val ventana = prepararMenu(fase)
         teg!!.actualizarFase(fase.jugadorEnTurno)
         return Scene(VentanaJuego(fichas!!, ventana))
-       //return teg.prepararMenuSiguiente()
     }
 
     private fun prepararMenu(fase: FaseDeRonda): VentanaMenu {
@@ -150,6 +150,13 @@ object Controlador {
                 return menuAPreparar
             }
             else -> {
+                val textoDeError = TextoNotificable()
+                textoDeError.setPosicion(870, 550)
+                val handlerGeneral = BotonMoverHandle(jugadorEnTurno, textoDeError)
+                handlerGeneral.setJugadorEnTurno(jugadorEnTurno)
+                for (ficha_pais in fichas!!) {
+                    ficha_pais.agregarNuevoHandler(handlerGeneral.getCopy())
+                }
                 val menuAPreparar: VentanaMenu = VentanaMenuReagrupar(ficha)
                 val f = FabricaTextoObjetivo()
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
@@ -192,7 +199,9 @@ object Controlador {
     }
 
     fun habilitarPaisesParaColocacion(handler: HandlerDePais?) {
-        //teg.habilitarPaisesParaColocacion(handler)
+        for (ficha_pais in fichas!!) {
+            ficha_pais.agregarNuevoHandler(handler!!.getCopy())
+        }
     }
 
     fun reestablecerPaises(jugador: Jugador?, handler: HandlerDePais?) {
