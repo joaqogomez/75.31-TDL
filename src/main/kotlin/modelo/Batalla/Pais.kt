@@ -69,8 +69,8 @@ class Pais(nombre: String) : Ubicable() {
     }
 
     fun setCoordenadas(parDeCoordenadas: Coordenadas) {
-        posX = parDeCoordenadas.posX
-        posY = parDeCoordenadas.posY
+        posX = parDeCoordenadas.component1()
+        posY = parDeCoordenadas.component2()
     }
 
     private fun verificarPosibilidadDeAtaque(otroPais: Pais) {

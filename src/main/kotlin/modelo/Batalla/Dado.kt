@@ -10,11 +10,11 @@ class Dado {
         val numeroRandom = Random()
         val resultado = ArrayList<Int>()
         if (cantidad >= maximasTiradas) {
-            for (i in 0 .. maximasTiradas) {
+            for (i in 1 .. maximasTiradas) {
                 resultado.add(numeroRandom.nextInt(cantidadNumerosDado) + 1)
             }
         } else {
-            for (i in 0 .. cantidad) {
+            for (i in 1 .. cantidad) {
                 resultado.add(numeroRandom.nextInt(cantidadNumerosDado) + 1)
             }
         }
