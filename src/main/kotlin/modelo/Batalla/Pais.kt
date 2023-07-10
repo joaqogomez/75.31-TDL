@@ -5,7 +5,6 @@ import modelo.Excepciones.MovimientoDeEjercitoError
 import modelo.Parser.Coordenadas
 import modelo.Ubicable
 import java.util.*
-import kotlin.collections.ArrayList
 
 class Pais(nombre: String) : Ubicable() {
     var ejercitos: Ejercitos

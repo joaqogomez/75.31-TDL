@@ -4,7 +4,6 @@ import Controlador.Controlador
 import javafx.animation.PauseTransition
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
-import javafx.scene.Node
 import modelo.Batalla.Pais
 import modelo.JuegoYJugador.Jugador
 import vista.Elementos.TextoNotificable
@@ -14,7 +13,6 @@ import javafx.scene.input.MouseEvent
 import javafx.stage.Stage
 import javafx.util.Duration
 import vista.ventanas.VentanaDados
-import vista.ventanas.VentanaVictoria
 
 class ConfirmacionAtaqueHandle(
     private var jugador: Jugador?,
@@ -68,11 +66,7 @@ class ConfirmacionAtaqueHandle(
     private fun evaluarVictoriaDelJugador(evento: MouseEvent?) {
         try {
             if (jugador!!.gane()) {
-                val stage = (evento?.source as Node).scene.window as Stage
-                val victoria = VentanaVictoria(jugador!!)
-                val scenaFinal = Scene(victoria)
-                stage.scene = scenaFinal
-                stage.show()
+                Controlador.gano(evento, jugador!!)
             }
         } catch (ignored: Exception) {
         }

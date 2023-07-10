@@ -14,6 +14,6 @@ class Tablero : Application() {
         val escenaComienzo = Scene(ventanaComienzo)
         stage.scene = escenaComienzo
         stage.show()
-        //controladorMusica.playBackgroundMusic()
+        controladorMusica.playBackgroundMusic()
     }
 }

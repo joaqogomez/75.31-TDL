@@ -7,18 +7,36 @@ import modelo.JuegoYJugador.Juego
 import modelo.JuegoYJugador.Jugador
 import javafx.scene.Scene
 import javafx.scene.control.TextField
+import javafx.scene.input.MouseEvent
 import javafx.scene.text.Text
+import javafx.stage.Stage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 import modelo.Fases.FaseDeRonda
 import modelo.Ubicable
+import vista.Botones.BotonGuardar
 import vista.Botones.BotonMostrarObjetivo
 import vista.Elementos.*
 import vista.ventanas.*
 import java.util.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
+import java.io.File
 
 object Controlador {
     private var fichas: ArrayList<Ficha>? = null
     private var fichas_jugadores: HashMap<Int, Ficha>? = null
     private var teg: Juego? = null
+    private val scope = CoroutineScope(Dispatchers.IO)
+    private val logMessageChannel = Channel<EstadoJuego>(capacity = Channel.UNLIMITED)
+    private val launch = scope.launch {
+            for (msg in logMessageChannel) {
+                File("src/main/resources/partida.json").writeText(Json.encodeToString(msg))
+            }
+    }
+
     fun setearJuego(numeroJugadores: Int) {
         teg = Juego(numeroJugadores)
     }
@@ -27,6 +45,14 @@ object Controlador {
         for (nombre in nombres) {
             val numeroJugador = (nombre as CampoDeNombre?)!!.getNumero()
             teg!!.setNombreJugadorNumero(numeroJugador, nombre.getText())
+        }
+    }
+    fun cargarNombres(nombres: ArrayList<String>) {
+        var i = 1
+        for (nombre in nombres) {
+            val numeroJugador = i
+            teg!!.setNombreJugadorNumero(numeroJugador, nombre)
+            i++
         }
     }
 
@@ -78,9 +104,13 @@ object Controlador {
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
                 val colores = ColoresJugadores()
                 val color = colores.getColor(jugadorEnTurno.nroJugador())!!
+                val botonGuardar = BotonGuardar(fichas!!, logMessageChannel)
+                botonGuardar.translateX = 920.0
+                botonGuardar.translateY = 550.0
                 val botonObjetivo = BotonMostrarObjetivo(textoDeObjetivo, jugadorEnTurno.nombreJugador, color)
                 botonObjetivo.translateX = 905.0
                 botonObjetivo.translateY = 70.0
+                menuAPreparar.children.add(botonGuardar)
                 menuAPreparar.children.add(botonObjetivo)
                 menuAPreparar.children.add(nombreDelJugador)
                 return menuAPreparar
@@ -98,9 +128,13 @@ object Controlador {
                 val textoDeObjetivo = f.textoObjetivo(jugadorEnTurno.objetivo)
                 val colores = ColoresJugadores()
                 val color = colores.getColor(jugadorEnTurno.nroJugador())!!
+                val botonGuardar = BotonGuardar(fichas!!, logMessageChannel)
+                botonGuardar.translateX = 920.0
+                botonGuardar.translateY = 550.0
                 val botonObjetivo = BotonMostrarObjetivo(textoDeObjetivo, jugadorEnTurno.nombreJugador, color)
                 botonObjetivo.translateX = 905.0
                 botonObjetivo.translateY = 70.0
+                menuAPreparar.children.add(botonGuardar)
                 menuAPreparar.children.add(botonObjetivo)
                 menuAPreparar.children.add(nombreDelJugador)
                 return menuAPreparar
@@ -121,6 +155,11 @@ object Controlador {
                 val botonObjetivo = BotonMostrarObjetivo(textoDeObjetivo, jugadorEnTurno.nombreJugador, color)
                 botonObjetivo.translateX = 905.0
                 botonObjetivo.translateY = 70.0
+                val botonGuardar = BotonGuardar(fichas!!, logMessageChannel)
+                botonGuardar.translateX = 920.0
+                botonGuardar.translateY = 550.0
+                menuAPreparar.children.add(botonGuardar)
+
                 menuAPreparar.children.add(botonObjetivo)
                 menuAPreparar.children.add(nombreDelJugador)
                 return menuAPreparar
@@ -141,6 +180,10 @@ object Controlador {
                 val botonObjetivo = BotonMostrarObjetivo(textoDeObjetivo, jugadorEnTurno.nombreJugador, color)
                 botonObjetivo.translateX = 905.0
                 botonObjetivo.translateY = 70.0
+                val botonGuardar = BotonGuardar(fichas!!, logMessageChannel)
+                botonGuardar.translateX = 920.0
+                botonGuardar.translateY = 550.0
+                menuAPreparar.children.add(botonGuardar)
                 menuAPreparar.children.add(botonObjetivo)
                 menuAPreparar.children.add(nombreDelJugador)
                 return menuAPreparar
@@ -161,6 +204,10 @@ object Controlador {
                 val botonObjetivo = BotonMostrarObjetivo(textoDeObjetivo, jugadorEnTurno.nombreJugador, color)
                 botonObjetivo.translateX = 905.0
                 botonObjetivo.translateY = 70.0
+                val botonGuardar = BotonGuardar(fichas!!, logMessageChannel)
+                botonGuardar.translateX = 920.0
+                botonGuardar.translateY = 550.0
+                menuAPreparar.children.add(botonGuardar)
                 menuAPreparar.children.add(botonObjetivo)
                 menuAPreparar.children.add(nombreDelJugador)
                 return menuAPreparar
@@ -209,4 +256,26 @@ object Controlador {
             }
         }
     }
+
+     fun gano(evento: MouseEvent?, jugador: Jugador) {
+        val stage = (evento?.source as Node).scene.window as Stage
+        val victoria = VentanaVictoria(jugador!!)
+        val scenaFinal = Scene(victoria)
+        stage.scene = scenaFinal
+        stage.show()
+    }
+
+    fun cargarFichas(estado: ArrayList<JugadorData>) {
+        for (ficha in fichas!!) {
+            for (jugador in estado) {
+                for (pais in jugador.paises) {
+                    val paisFicha = ficha.miUbicable as Pais
+                    if (pais.nombre == paisFicha.getNombreDelPais()) {
+                        paisFicha.agregarEjercito(pais.ejercitos - 1)
+                    }
+                }
+            }
+        }
+    }
+
 }

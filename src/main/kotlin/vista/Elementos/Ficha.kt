@@ -65,7 +65,6 @@ class Ficha(ubicable: Ubicable) : Circle(), Observador {
     }
 
     fun getCantidad(): Text {
-        print(miUbicable)
         texto.text = miUbicable.ejercitos().toString()
         return texto
     }
